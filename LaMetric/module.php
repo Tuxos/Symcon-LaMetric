@@ -14,8 +14,9 @@
             // Diese Zeile nicht löschen
             parent::ApplyChanges();
 
-            $id = $this->RegisterVariableString("ipadress"       , "IP Adresse"      ,"~String",0);
-            $id = $this->RegisterVariableString("apikey"       , "API Key"      ,"~String",1);
+            $id = $this->RegisterVariableString("osversion", "OS Version", "~String",0);
+            $id = $this->RegisterVariableString("ssid", "SSID", "~String",1);
+            $id = $this->RegisterVariableInteger("wlanconnection", "WLan Empfang", "~Intensity.100",2);
 
         }
  
