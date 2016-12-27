@@ -1,0 +1,19 @@
+{
+    "elements":
+    [
+        { "type": "Label"             , "label":  "######## LaMetric v0.1 ########" },
+        { "type": "Label"             , "label":  "LaMetric Config" },
+        { "type": "ValidationTextBox" , "name" :  "ipadress", "caption": "IP Adresse" },
+        { "type": "ValidationTextBox" , "name" : "apikey", "caption": "API Key" },
+    ],
+    "actions":
+    [
+        ... //Hier Formularfelder einfügen
+    ],
+    "status":
+    [
+        { "code": 101, "icon": "active", "caption": "LaMetric wird erstellt..." },
+        { "code": 102, "icon": "active", "caption": "LaMetric ist aktiv" },
+        { "code": 202, "icon": "error", "caption": "Config falsch" },
+    ]
+}
