@@ -1,8 +1,7 @@
 {
     "elements":
     [
-        { "type": "Label"             , "label": "######## LaMetric v0.1 ########" },
-        { "type": "Label"             , "label": "LaMetric Config" },
+        { "type": "Label"             , "label": "######## LaMetric Modul (beta) ########" },
         { "type": "ValidationTextBox" , "name" : "ipadress", "caption": "IP Adresse" },
         { "type": "ValidationTextBox" , "name" : "apikey", "caption": "API Key" },
     ],
