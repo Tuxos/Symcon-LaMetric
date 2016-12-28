@@ -3,7 +3,7 @@
     [
         { "type": "Label"             , "label": "######## LaMetric Modul (beta) ########" },
         { "type": "Label"             , "label": " " },
-        { "type": "Label"             , "label": "Die IP Adresse siehst Du in der LaMetric APP auf Deinem Smartphone" },
+        { "type": "Label"             , "label": "Die IP Adresse siehst Du in der LaMetric APP auf Deinem Smartphone unter EINSTELLUNGEN --> KONNEKTIVITÄT" },
         { "type": "Label"             , "label": "Den API Key bekommst Du unter: https://developer.lametric.com/user/devices" },
         { "type": "Label"             , "label": " " },
         { "type": "ValidationTextBox" , "name" : "ipadress", "caption": "IP Adresse" },
