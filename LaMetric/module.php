@@ -56,15 +56,17 @@
 
 	         if ($data->display->brightness_mode == "auto") { $mode=true; } else { $mode=false; };
 
-	         SetValue(24351 /*[Devices\LaMetric\LaMetric Esszimmer\Volume]*/, $data->audio->volume);
-	         SetValue(14287 /*[Devices\LaMetric\LaMetric Esszimmer\Helligkeit]*/,$data->display->brightness);
-	         SetValueBoolean(56327 /*[Devices\LaMetric\LaMetric Esszimmer\Helligkeit Modus]*/,$mode);
-	         SetValueBoolean(22331 /*[Devices\LaMetric\LaMetric Esszimmer\Bluetooth]*/,$data->bluetooth->active);
-	         SetValue(11350 /*[Devices\LaMetric\LaMetric Esszimmer\Bluetooth Name]*/,$data->bluetooth->name);
-	         SetValue(29414 /*[Devices\LaMetric\LaMetric Esszimmer\config\Name]*/,$data->name);
-	         SetValue(29999 /*[Devices\LaMetric\LaMetric Esszimmer\OS Version]*/,$data->os_version);
-	         SetValue(19392 /*[Devices\LaMetric\LaMetric Esszimmer\SSID]*/,$data->wifi->essid);
-	         SetValue(51507 /*[Devices\LaMetric\LaMetric Esszimmer\WLan Empfang]*/,$data->wifi->strength);
+                 $nameid = IPS_GetVariableIDByName("Name", $this);
+
+	         // SetValue(24351 /*[Devices\LaMetric\LaMetric Esszimmer\Volume]*/, $data->audio->volume);
+	         // SetValue(14287 /*[Devices\LaMetric\LaMetric Esszimmer\Helligkeit]*/,$data->display->brightness);
+	         // SetValueBoolean(56327 /*[Devices\LaMetric\LaMetric Esszimmer\Helligkeit Modus]*/,$mode);
+	         // SetValueBoolean(22331 /*[Devices\LaMetric\LaMetric Esszimmer\Bluetooth]*/,$data->bluetooth->active);
+	         // SetValue(11350 /*[Devices\LaMetric\LaMetric Esszimmer\Bluetooth Name]*/,$data->bluetooth->name);
+	         SetValue($nameid,$data->name);
+	         // SetValue(29999 /*[Devices\LaMetric\LaMetric Esszimmer\OS Version]*/,$data->os_version);
+	         // SetValue(19392 /*[Devices\LaMetric\LaMetric Esszimmer\SSID]*/,$data->wifi->essid);
+	         // SetValue(51507 /*[Devices\LaMetric\LaMetric Esszimmer\WLan Empfang]*/,$data->wifi->strength);
 	
 	}
     }
