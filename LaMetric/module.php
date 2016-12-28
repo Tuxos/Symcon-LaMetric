@@ -42,5 +42,32 @@
         public function MeineErsteEigeneFunktion() {
             // Selbsterstellter Code
         }
+	    
+    //**************************************************************************
+    //  0 - Bool
+    //  1 - Integer
+    //  2 - Float
+    //  3 - String
+    //**************************************************************************    
+    protected function RegisterProfile($Typ, $Name, $Icon, $Prefix, $Suffix, $MinValue=false, $MaxValue=false, $StepSize=false, $Digits=0) 
+      {
+      if(!IPS_VariableProfileExists($Name)) 
+        {
+        IPS_CreateVariableProfile($Name, $Typ);  
+        } 
+      else 
+        {
+        $profile = IPS_GetVariableProfile($Name);
+        if($profile['ProfileType'] != $Typ)
+          throw new Exception("Variable profile type does not match for profile ".$Name);
+        }
+        
+      IPS_SetVariableProfileIcon($Name, $Icon);
+      IPS_SetVariableProfileText($Name, $Prefix, $Suffix);
+      IPS_SetVariableProfileValues($Name, $MinValue, $MaxValue, $StepSize);
+		  if ( $Typ == 2 )
+			 IPS_SetVariableProfileDigits($Name, $Digits);
+      }
+	    
     }
 ?>
