@@ -75,10 +75,10 @@
 
 	// Gibt eine Nachricht auf LaMetric aus
 
-	public function notification(integer $lmid, string $notification) {
+	public function notification($notification) {
 
-	$ip = $lmid->ReadPropertyString("ipadress");	
-	$apikey = $lmid->ReadPropertyString("apikey");
+	$ip = $this->ReadPropertyString("ipadress");	
+	$apikey = $this->ReadPropertyString("apikey");
 	$key = base64_encode("dev:".$apikey);
 
 	$url = "http://".$ip.":8080/api/v2/device";
