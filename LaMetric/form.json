@@ -8,6 +8,9 @@
         { "type": "Label"             , "label": " " },
         { "type": "ValidationTextBox" , "name" : "ipadress", "caption": "IP Adresse" },
         { "type": "ValidationTextBox" , "name" : "apikey", "caption": "API Key" },
+        { "type": "Label"             , "label": " " },
+        { "type": "Label"             , "label": "Diese Software steht unter der GPL v3 und bleibt frei erhältlich." },
+        { "type": "Label"             , "label": "Quellcode unter: https://github.com/Tuxos/Symcon-LaMetric/" },
     ],
     "actions":
     [
