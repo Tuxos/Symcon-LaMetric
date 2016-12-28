@@ -1,8 +1,9 @@
 <?
+
     class LaMetric extends IPSModule {
  
         public function Create() {
-            // Diese Zeile nicht löschen.
+
             parent::Create();
 
             $this->RegisterPropertyString("ipadress", "");
@@ -11,7 +12,7 @@
         }
 
         public function ApplyChanges() {
-            // Diese Zeile nicht löschen
+
             parent::ApplyChanges();
 
 	    $id = $this->RegisterVariableString("name", "Name", "~String",0);
@@ -26,6 +27,10 @@
 
         }
  
+
+
+	// Lese alle Configurationsdaten aus
+
         public function readdata() {
 
 		$ip = $this->ReadPropertyString("ipadress");	
@@ -65,7 +70,63 @@
 	         SetValue(IPS_GetObjectIDByName("OS Version", $this->InstanceID),$data->os_version);
 	         SetValue(IPS_GetObjectIDByName("SSID", $this->InstanceID),$data->wifi->essid);
 	         SetValue(IPS_GetObjectIDByName("WLan Empfang", $this->InstanceID),$data->wifi->strength);
-	
 	}
+
+
+	// Gibt eine Nachricht auf LaMetric aus
+
+	public function notification(string $notification) {
+
+	$ip = $this->ReadPropertyString("ipadress");	
+	$apikey = $this->ReadPropertyString("apikey");
+	$key = base64_encode("dev:".$apikey);
+
+	$url = "http://".$ip.":8080/api/v2/device";
+
+	if ($notification != "") {
+
+  		$frames = array(
+		"priority" => "info",
+		'icon_type' => 'info',
+		"model" => array(
+		"cycles" => 1,
+		"frames" => array(
+			array(
+				"icon" => "i2020",
+         			"text" => $notification
+				)
+			),
+#	"sound" => array(
+#	"category" => "notifications",
+#	"id" => "positive5",
+#	"repeat" => 1
+#			)
+		)
+	);
+
+	$curl = curl_init();
+
+	$headers = array(
+		"Accept: application/json",
+		"Content-Type: application/json",
+		"Authorization: Basic ".$key,
+		"Cache-Control: no-cache",
+		);
+
+	curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+	curl_setopt($curl, CURLOPT_URL, $url);
+	curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+	curl_setopt($curl, CURLOPT_POST, 1);
+	curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($frames));
+
+	$response = curl_exec($curl);
+
+	curl_close($curl);
+		}
+	}
+
+
     }
 ?>
