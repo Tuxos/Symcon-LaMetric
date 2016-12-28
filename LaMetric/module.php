@@ -55,19 +55,16 @@
 	         $data = json_decode($response);
 
 	         if ($data->display->brightness_mode == "auto") { $mode=true; } else { $mode=false; };
-
-
-		 $nameid = IPS_GetObjectIDByName("Name", $this->InstanceID);
 		 
 	         SetValue(IPS_GetObjectIDByName("Volume", $this->InstanceID), $data->audio->volume);
-	         // SetValue(14287 /*[Devices\LaMetric\LaMetric Esszimmer\Helligkeit]*/,$data->display->brightness);
-	         // SetValueBoolean(56327 /*[Devices\LaMetric\LaMetric Esszimmer\Helligkeit Modus]*/,$mode);
-	         // SetValueBoolean(22331 /*[Devices\LaMetric\LaMetric Esszimmer\Bluetooth]*/,$data->bluetooth->active);
-	         // SetValue(11350 /*[Devices\LaMetric\LaMetric Esszimmer\Bluetooth Name]*/,$data->bluetooth->name);
-	         SetValue($nameid,$data->name);
-	         // SetValue(29999 /*[Devices\LaMetric\LaMetric Esszimmer\OS Version]*/,$data->os_version);
-	         // SetValue(19392 /*[Devices\LaMetric\LaMetric Esszimmer\SSID]*/,$data->wifi->essid);
-	         // SetValue(51507 /*[Devices\LaMetric\LaMetric Esszimmer\WLan Empfang]*/,$data->wifi->strength);
+	         SetValue(IPS_GetObjectIDByName("Helligkeit", $this->InstanceID),$data->display->brightness);
+	         SetValueBoolean(IPS_GetObjectIDByName("Helligkeit Auto Modus", $this->InstanceID),$mode);
+	         SetValueBoolean(IPS_GetObjectIDByName("Bluetooth", $this->InstanceID),$data->bluetooth->active);
+	         SetValue(IPS_GetObjectIDByName("Bluetooth Name", $this->InstanceID),$data->bluetooth->name);
+	         SetValue(IPS_GetObjectIDByName("Name", $this->InstanceID),$data->name);
+	         SetValue(IPS_GetObjectIDByName("OS Version", $this->InstanceID),$data->os_version);
+	         SetValue(IPS_GetObjectIDByName("SSID", $this->InstanceID),$data->wifi->essid);
+	         SetValue(IPS_GetObjectIDByName("WLan Empfang", $this->InstanceID),$data->wifi->strength);
 	
 	}
     }
