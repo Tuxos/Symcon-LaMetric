@@ -26,8 +26,11 @@
 
         }
  
-        public function readdata($parentid) {
-	
+        public function readdata() {
+
+                $nameid = $this->GetIDForIdent("Name");
+		$ModulID = IPS_GetParent($nameid);
+
 		$ip = $this->ReadPropertyString("ipadress");	
 		$apikey = $this->ReadPropertyString("apikey");
 		$key = base64_encode("dev:".$apikey);
@@ -57,7 +60,7 @@
 	         if ($data->display->brightness_mode == "auto") { $mode=true; } else { $mode=false; };
 
 
-                 $nameid = IPS_GetVariableIDByName("Name", $parentid);
+                 // $nameid = IPS_GetVariableIDByName("Name", $parentid);
 
 	         // SetValue(24351 /*[Devices\LaMetric\LaMetric Esszimmer\Volume]*/, $data->audio->volume);
 	         // SetValue(14287 /*[Devices\LaMetric\LaMetric Esszimmer\Helligkeit]*/,$data->display->brightness);
