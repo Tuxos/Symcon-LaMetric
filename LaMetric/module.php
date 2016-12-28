@@ -13,8 +13,10 @@
         public function ApplyChanges() {
             // Diese Zeile nicht löschen
             parent::ApplyChanges();
+		
+            // $this->RegisterProfile(1,"WITHINGS_M_Groesse"  ,"Gauge"  ,""," cm");
 
-	    $this->RegisterProfile("LaMetric-brightness-mode", "Light", "", "", 0 /* Boolean */, Array(
+	    $this->RegisterProfile(0, "LaMetric-brightness-mode", "Light", "", "", Array(
 							Array(0, "Manual", "", 16711680),
 							Array(1, "Auto", "", 65280)
 						));
