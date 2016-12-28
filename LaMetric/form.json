@@ -2,6 +2,10 @@
     "elements":
     [
         { "type": "Label"             , "label": "######## LaMetric Modul (beta) ########" },
+        { "type": "Label"             , "label": " " },
+        { "type": "Label"             , "label": "Die IP Adresse siehst Du in der LaMetric APP auf Deinem Smartphone" },
+        { "type": "Label"             , "label": "Den API Key bekommst Du unter: https://developer.lametric.com/user/devices" },
+        { "type": "Label"             , "label": " " },
         { "type": "ValidationTextBox" , "name" : "ipadress", "caption": "IP Adresse" },
         { "type": "ValidationTextBox" , "name" : "apikey", "caption": "API Key" },
     ],
@@ -11,7 +15,7 @@
     ],
     "status":
     [
-        { "code": 101, "icon": "active", "caption": "LaMetric wird erstellt..." },
+        { "code": 101, "icon": "active", "caption": "LaMetric Instanz wird erstellt..." },
         { "code": 102, "icon": "active", "caption": "LaMetric ist aktiv" },
         { "code": 202, "icon": "error", "caption": "Config falsch" },
     ]
