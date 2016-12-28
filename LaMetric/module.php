@@ -17,8 +17,8 @@
             // $this->RegisterProfile(1,"WITHINGS_M_Groesse"  ,"Gauge"  ,""," cm");
 
 	    $this->RegisterProfile(0, "LaMetric-brightness-mode", "Light", "", "", Array(
-							Array(0, "Manual", "", 16711680),
-							Array(1, "Auto", "", 65280)
+							Array(0, "Manual", "", 0x0000FF),
+							Array(1, "Auto", "", 0xFF0000)
 						));
 
             $id = $this->RegisterVariableString("osversion", "OS Version", "~String",0);
