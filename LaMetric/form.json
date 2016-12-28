@@ -13,7 +13,9 @@
     ],
     "actions":
     [
-        
+    
+        { "type": "Button", "label": "Lese LaMetric Config ein", "onClick": "LM_readdata($id);" }
+
     ],
     "status":
     [
