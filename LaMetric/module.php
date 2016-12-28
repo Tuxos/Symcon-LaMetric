@@ -14,7 +14,7 @@
             // Diese Zeile nicht löschen
             parent::ApplyChanges();
 
-	    $this->RegisterProfileEx("LaMetric-brightness-mode", "Light", "", "", 0 /* Boolean */, Array(
+	    $this->RegisterProfile("LaMetric-brightness-mode", "Light", "", "", 0 /* Boolean */, Array(
 							Array(0, "Manual", "", 16711680),
 							Array(1, "Auto", "", 65280)
 						));
