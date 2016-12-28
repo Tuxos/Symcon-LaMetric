@@ -28,7 +28,7 @@
 	    $id = $this->RegisterVariableString("bluetoothname", "Bluetooth Name", "~String",4);
 	    $id = $this->RegisterVariableInteger("volume", "Volume", "~Intensity.100",5);
 	    $id = $this->RegisterVariableInteger("brightness", "Helligkeit", "~Intensity.100",6);
-	    $id = $this->RegisterVariableInteger("brightnessmode", "Helligkeit Modus", "LaMetric-brightness-mode",7);
+	    $id = $this->RegisterVariableBoolean("brightnessmode", "Helligkeit Modus", "LaMetric-brightness-mode",7);
 
         }
  
