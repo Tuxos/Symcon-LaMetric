@@ -26,7 +26,7 @@
 
         }
  
-        public function readdata(integer: $modulid) {
+        public function readdata(integer $modulid) {
 
 		$ip = $this->ReadPropertyString("ipadress");	
 		$apikey = $this->ReadPropertyString("apikey");
