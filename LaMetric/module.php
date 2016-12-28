@@ -26,7 +26,7 @@
 
         }
  
-        public function readdata($modulid) {
+        public function readdata() {
 
 		$ip = $this->ReadPropertyString("ipadress");	
 		$apikey = $this->ReadPropertyString("apikey");
@@ -57,7 +57,7 @@
 	         if ($data->display->brightness_mode == "auto") { $mode=true; } else { $mode=false; };
 
 
-                 $nameid = @IPS_GetVariableIDByName("Name", $modulid);
+                 $nameid = IPS_GetObjectIDByName("Name", $this->InstanceID);
 
 	         // SetValue(24351 /*[Devices\LaMetric\LaMetric Esszimmer\Volume]*/, $data->audio->volume);
 	         // SetValue(14287 /*[Devices\LaMetric\LaMetric Esszimmer\Helligkeit]*/,$data->display->brightness);
