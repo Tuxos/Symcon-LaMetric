@@ -57,9 +57,9 @@
 	         if ($data->display->brightness_mode == "auto") { $mode=true; } else { $mode=false; };
 
 
-                 $nameid = IPS_GetObjectIDByName("Name", $this->InstanceID);
-
-	         // SetValue(24351 /*[Devices\LaMetric\LaMetric Esszimmer\Volume]*/, $data->audio->volume);
+		 $nameid = IPS_GetObjectIDByName("Name", $this->InstanceID);
+		 
+	         SetValue(IPS_GetObjectIDByName("Volume", $this->InstanceID), $data->audio->volume);
 	         // SetValue(14287 /*[Devices\LaMetric\LaMetric Esszimmer\Helligkeit]*/,$data->display->brightness);
 	         // SetValueBoolean(56327 /*[Devices\LaMetric\LaMetric Esszimmer\Helligkeit Modus]*/,$mode);
 	         // SetValueBoolean(22331 /*[Devices\LaMetric\LaMetric Esszimmer\Bluetooth]*/,$data->bluetooth->active);
