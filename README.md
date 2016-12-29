@@ -23,6 +23,6 @@ Unter http://lametric-documentation.readthedocs.io/en/latest/reference-docs/devi
 Wenn kein Sound abgespielt werden soll kann das entsprechende Feld leer gelassen werden. "" sind notwendig.
 
 Beispiel:
-	<?
-	  LM_notification(49941 /*[Devices\LaMetric\LaMetric Büro]*/, "Hallo Welt!", "i43", "car");
-	?>
+    <?
+      LM_notification(49941 /*[Devices\LaMetric\LaMetric Büro]*/, "Hallo Welt!", "i43", "car");
+    ?>
