@@ -7,7 +7,11 @@ Für die erstmalige Konfiguration wird die IP Adresse der LaMetric Time, der API
 
 Die IP Adresse findet man in der LaMetric Smartphone/Tablet App unter EINSTELLUNGEN --> KONNEKTIVITÄT.
 Den API Key bekommt man unter: https://developer.lametric.com/user/devices.
-Das Aktualisierungs Intervall legt fest alle wieviel Sekunden die Konfigurations Daten aus der LaMetric Time ausgelesen und in die IPSymcon Variablen geschrieben werden (mittels `LM_readdata();`). 
+Das Aktualisierungs Intervall legt fest alle wieviel Sekunden die Konfigurations Daten aus der LaMetric Time ausgelesen und in die IPSymcon Variablen geschrieben werden (mittels `LM_readdata();`).
+
+Die LaMetric Instanz lässt sich einfach per Link ins WebFront einbinden. Alle Konfigurierbaren Parameter können direkt im WebFront eingestellt werden.
+
+Ein bekannter Bug ist es, dass wenn man direkt an der LaMetric die Lautstärke per Taste ändert, der Wert in der App als auch in der API (sprich auch in IPSymcon) nicht aktualisiert angezeigt wird. Es wird der letzte bekannte Wert angezeigt. Wenn die Lautstärke per App oder API geändert wird, zeigt er die richtige Lautstärke an. Der Bug ist Smart Atoms gemeldet worden.
 
 ##Notifications an eine LaMetric Time senden
 Befehl: `LM_notification(instanz-id, notification, icon, sound);`
