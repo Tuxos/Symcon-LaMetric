@@ -181,7 +181,7 @@
 
 	// Display Konfiguration
 
-	public function display($helligkeit, $modus) {
+	public function display(integer $helligkeit,boolean $modus) {
 	
 		$ip = $this->ReadPropertyString("ipadress");	
 		$apikey = $this->ReadPropertyString("apikey");
@@ -190,14 +190,14 @@
 
 		echo "Helligkeit Modus = ".$modus."\n";
 
-	//	if ($modus == 1) {
-	//		$modus = "true";
-	//		}
-	//		else
-	//		{
-	//		$modus = "false";
-	//		}
-	//	echo "Helligkeit Modus nach Bearbeitung = ".$modus."\n";
+//		if ($modus == 1) {
+//			$modus = "true";
+//			}
+//			else
+//			{
+//			$modus = "false";
+//			}
+//		echo "Helligkeit Modus nach Bearbeitung = ".$modus."\n";
 
 		$frames = array(
 			"brightness" => $helligkeit,
