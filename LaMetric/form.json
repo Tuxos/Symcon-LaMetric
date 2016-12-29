@@ -2,7 +2,6 @@
     "elements":
     [
         { "type": "Label"             , "label": "######## LaMetric Modul early adopter version ########" },
-        { "type": "Label"             , "label": " " },
         { "type": "Label"             , "label": "Die IP Adresse siehst Du in der LaMetric App auf Deinem Smartphone unter EINSTELLUNGEN --> KONNEKTIVITÄT" },
         { "type": "Label"             , "label": "Den API Key bekommst Du unter: https://developer.lametric.com/user/devices" },
         { "type": "Label"             , "label": "Das Aktualisierungs Intervall bezieht sich auf den Abstand des Auslesens der LaMetric Time Konfiguration in Sekunden." },
@@ -16,6 +15,7 @@
     "actions":
     [
     
+	{ "type": "Button", "label": "Lese Daten ein", "onClick": "LM_readdata($id);" }
 	{ "type": "Button", "label": "Sende Testnachricht", "onClick": "LM_notification($id, ' Es funktioniert!', 'i4938', 'car');" }
 
     ],
