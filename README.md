@@ -22,9 +22,9 @@ Wenn kein Icon angezeigt werden soll kann das entsprechende Feld leer gelassen w
 Unter http://lametric-documentation.readthedocs.io/en/latest/reference-docs/device-notifications.html findet sich eine Liste an Sounds. Nur die der notification id funktionieren.
 Wenn kein Sound abgespielt werden soll kann das entsprechende Feld leer gelassen werden. "" sind notwendig.
 
-Beispiel Script:
+Beispiel:
 ----------------
-#<?
-#  LM_notification(49941 /*[Devices\LaMetric\LaMetric Büro]*/, "Hallo Welt!", "i43", "car");
-#?>
+
+LM_notification(49941 /*[Devices\LaMetric\LaMetric Büro]*/, "Hallo Welt!", "i43", "car");
+
 ----------------
