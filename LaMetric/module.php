@@ -189,11 +189,11 @@
 		$url = "http://".$ip.":8080/api/v2/device/display";
 
 		if ($modus == 1) {
-			$modus = "auto";
+			$modus = "true";
 			}
 			else
 			{
-			$modus = "manual";
+			$modus = "false";
 			}
 
 		$frames = array(
