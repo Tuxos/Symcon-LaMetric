@@ -188,6 +188,8 @@
 		$key = base64_encode("dev:".$apikey);
 		$url = "http://".$ip.":8080/api/v2/device/display";
 
+		echo "Helligkeit Modus = ".$modus."\n";
+
 		if ($modus == 1) {
 			$modus = "true";
 			}
@@ -195,6 +197,7 @@
 			{
 			$modus = "false";
 			}
+		echo "Helligkeit Modus nach Bearbeitung = ".$modus."\n";
 
 		$frames = array(
 			"brightness" => $helligkeit,
@@ -220,7 +223,7 @@
 
 		$response = curl_exec($curl);
 
-		# echo $response;
+		echo $response;
 
 		curl_close($curl);	
 
