@@ -38,6 +38,23 @@ Wenn kein Sound abgespielt werden soll kann das entsprechende Feld leer gelassen
 ?>
 ```
 
+##Lautstärke konfigurieren
+Befehl: `LM_volume(instanz-id, volume);`
+
+###instanz-id
+Die Objekt-ID der LaMetric Time.
+
+###volume
+Lautstärke von 0-100 (0=aus,100=max. Lautstärke).
+
+###Beispiel
+```
+<?
+  LM_volume(49941 /*[Devices\LaMetric\LaMetric Büro]*/, 50);
+?>
+```
+
+
 ##Display konfigurieren
 Befehl: `LM_display(instanz-id, brightness, mode);`
 
