@@ -34,7 +34,7 @@
 	$eid = IPS_CreateEvent(1);
 	IPS_SetParent($eid, $parentid);
 	IPS_SetEventScript($eid, "LM_readdata($id)");
-	IPS_SetEventCyclic($eid, 0, 0, 0, 2, 1, $intervall);
+	IPS_SetEventCyclic($eid, 0, 0, 0, 2, 1, $this->ReadPropertyInteger("intervall"));
 	IPS_SetEventActive($eid, true);
 
 	if (($this->ReadPropertyString("ipadress") != "") and ($this->ReadPropertyString("apikey") != ""))
