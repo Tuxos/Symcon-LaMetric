@@ -234,5 +234,54 @@
 
 	}
 
+	// Bluetooth Konfiguration
+
+	public function bluetooth(string $btname, boolean $btactive) {
+
+	$ip = $this->ReadPropertyString("ipadress");	
+	$apikey = $this->ReadPropertyString("apikey");
+	$key = base64_encode("dev:".$apikey);
+
+	$url = "http://".$ip.":8080/api/v2/device/bluetooth";
+
+	if ($btactive == 1) {
+		$btactive = true;
+		}
+		else
+		{
+		$btactive = false;
+		}
+
+
+	$frames = array(
+		"active" => $btactive,
+		"name" => $btname
+			);
+
+	$curl = curl_init();
+
+	$headers = array(
+		"Accept: application/json",
+		"Content-Type: application/json",
+		"Authorization: Basic ".$key,
+		"Cache-Control: no-cache",
+			);
+
+	curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+	curl_setopt($curl, CURLOPT_URL, $url);
+	curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+	curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'PUT');
+	curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($frames));
+
+	$response = curl_exec($curl);
+
+	echo $response;
+
+	curl_close($curl);
+
+	}
+
     }
 ?>
