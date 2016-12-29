@@ -4,18 +4,17 @@
         { "type": "Label"             , "label": "######## LaMetric Modul early adopter version ########" },
         { "type": "Label"             , "label": "Die IP Adresse siehst Du in der LaMetric App auf Deinem Smartphone unter EINSTELLUNGEN --> KONNEKTIVITÄT" },
         { "type": "Label"             , "label": "Den API Key bekommst Du unter: https://developer.lametric.com/user/devices" },
-        { "type": "Label"             , "label": "Das Aktualisierungs Intervall bezieht sich auf den Abstand des Auslesens der LaMetric Time Konfiguration in Sekunden." },
+        { "type": "Label"             , "label": "Das Aktualisierungs Intervall legt fest alle wieviel Sekunden die Konfiguration der LaMetric Time eingelesen wird." },
         { "type": "Label"             , "label": " " },
         { "type": "ValidationTextBox" , "name" : "ipadress", "caption": "IP Adresse" },
         { "type": "ValidationTextBox" , "name" : "apikey", "caption": "API Key" },
         { "type": "ValidationTextBox" , "name" : "intervall", "caption": "Aktual. Intervall" },
-        { "type": "Label"             , "label": " " },
-        { "type": "Label"             , "label": "Quellcode unter: https://github.com/Tuxos/Symcon-LaMetric/" },
+        { "type": "Label"             , "label": " " }
     ],
     "actions":
     [
     
-	{ "type": "Button", "label": "Lese Daten ein", "onClick": "LM_readdata($id);" },
+	{ "type": "Button", "label": "Lese Konfiguration ein", "onClick": "LM_readdata($id);" },
 	{ "type": "Button", "label": "Sende Testnachricht", "onClick": "LM_notification($id, ' Es funktioniert!', 'i4938', 'car');" }
 
     ],
@@ -23,6 +22,6 @@
     [
         { "code": 101, "icon": "active", "caption": "LaMetric Instanz wird erstellt..." },
         { "code": 102, "icon": "active", "caption": "LaMetric Instanz ist aktiv" },
-        { "code": 202, "icon": "error", "caption": "Config falsch" },
+        { "code": 202, "icon": "error", "caption": "Config falsch" }
     ]
 }
