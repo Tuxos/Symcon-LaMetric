@@ -28,10 +28,14 @@
 	$id = $this->RegisterVariableInteger("brightness", "Helligkeit", "~Intensity.100",7);
 	$id = $this->RegisterVariableBoolean("brightnessautomode", "Helligkeit Auto Modus", "~Switch",8);
 	
-	$this->RegisterTimer('ReadData', $intervall, 'LM_readdata($id)');
+	//$this->RegisterTimer('ReadData', $intervall, 'LM_readdata($id)');
+
 	$parentid = IPS_GetParent($id);
-	$eventid = IPS_GetEventIDByName("ReadData", $parentid);	
-	IPS_SetEventScript($eventid, "LM_readdata($id)");
+	$eid = IPS_CreateEvent(1);
+	IPS_SetParent($eid, $parentid);
+	IPS_SetEventScript($eid, "LM_readdata($id)");
+	IPS_SetEventCyclic($eid, 0, 0, 0, 2, 1, $intervall);
+	IPS_SetEventActive($eid, true);
 
 	if (($this->ReadPropertyString("ipadress") != "") and ($this->ReadPropertyString("apikey") != ""))
 		{
