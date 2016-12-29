@@ -9,13 +9,22 @@
 		$this->RegisterPropertyString("ipadress", "");
 		$this->RegisterPropertyString("apikey", "");
 		$this->RegisterPropertyInteger("intervall", "60");
-	
+		
+		//erstelle Skript Hülle und kopiere die Daten setdisplay.php hinein
 		$ScriptID = IPS_CreateScript(0);
 		IPS_SetParent ($ScriptID, $this->InstanceID); 
 		IPS_SetName($ScriptID, "setdisplay");
 		IPS_SetHidden($ScriptID, true);
 		copy(IPS_GetKernelDir()."/modules/Symcon-LaMetric/LaMetric/setdisplay.php", IPS_GetKernelDir()."/scripts/LM_setdisplay.php");
 		IPS_SetScriptFile($ScriptID, "LM_setdisplay.php");
+
+		//erstelle Skript Hülle und kopiere die Daten setbluetooth.php hinein
+		$ScriptID = IPS_CreateScript(0);
+		IPS_SetParent ($ScriptID, $this->InstanceID); 
+		IPS_SetName($ScriptID, "setbluetooth");
+		IPS_SetHidden($ScriptID, true);
+		copy(IPS_GetKernelDir()."/modules/Symcon-LaMetric/LaMetric/setbluetooth.php", IPS_GetKernelDir()."/scripts/LM_setbluetooth.php");
+		IPS_SetScriptFile($ScriptID, "LM_setbluetooth.php");
  
 	}
 
@@ -28,13 +37,17 @@
 	$id = $this->RegisterVariableString("ssid", "SSID", "~String",3);
 	$id = $this->RegisterVariableInteger("wlanconnection", "WLan Empfang", "~Intensity.100",4);
 	$id = $this->RegisterVariableBoolean("bluetooth", "Bluetooth", "~Switch",5);
+	$ScriptID = IPS_GetScriptIDByName("setbluetooth", $this->InstanceID);	
+	IPS_SetVariableCustomAction($id, $ScriptID);
 	$id = $this->RegisterVariableString("bluetoothname", "Bluetooth Name", "~String",6);
+	IPS_SetVariableCustomAction($id, $ScriptID);
 	$id = $this->RegisterVariableInteger("volume", "Volume", "~Intensity.100",7);
 	$id = $this->RegisterVariableInteger("brightness", "Helligkeit", "~Intensity.100",8);
 	$ScriptID = IPS_GetScriptIDByName("setdisplay", $this->InstanceID);	
 	IPS_SetVariableCustomAction($id, $ScriptID);
 	$id = $this->RegisterVariableBoolean("brightnessautomode", "Helligkeit Auto Modus", "~Switch",9);
 	IPS_SetVariableCustomAction($id, $ScriptID);
+
 	$this->RegisterTimer('ReadData', $this->ReadPropertyInteger("intervall"), 'LM_readdata($id)');
 
 
@@ -276,8 +289,6 @@
 	curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($frames));
 
 	$response = curl_exec($curl);
-
-	echo $response;
 
 	curl_close($curl);
 
