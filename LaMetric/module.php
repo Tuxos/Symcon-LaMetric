@@ -30,7 +30,7 @@
 	$intervall = $this->ReadPropertyInteger("intervall") * 1000;
 	$this->RegisterTimer("Update", $intervall, "LM_readdata($id);");
  
-        LM_readdata($id);
+        LM_readdata();
 
 	}
  
