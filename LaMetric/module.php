@@ -27,7 +27,9 @@
 	$id = $this->RegisterVariableInteger("volume", "Volume", "~Intensity.100",6);
 	$id = $this->RegisterVariableInteger("brightness", "Helligkeit", "~Intensity.100",7);
 	$id = $this->RegisterVariableBoolean("brightnessautomode", "Helligkeit Auto Modus", "~Switch",8);
-	$id = $this->RegisterTimer("Update", $intervall, "LM_readdata()", 9);
+	
+	$this->RegisterTimer("Update", $intervall, "LM_readdata()");
+	$this->SetTimerInterval("Update", $intervall);
 
 	}
  
