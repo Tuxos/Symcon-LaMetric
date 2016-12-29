@@ -16,15 +16,15 @@
 
 	parent::ApplyChanges();
 
-	$id = $this->RegisterVariableString("name", "Name", "~String",0);
-	$id = $this->RegisterVariableString("osversion", "OS Version", "~String",1);
-	$id = $this->RegisterVariableString("ssid", "SSID", "~String",2);
-	$id = $this->RegisterVariableInteger("wlanconnection", "WLan Empfang", "~Intensity.100",3);
-	$id = $this->RegisterVariableBoolean("bluetooth", "Bluetooth", "~Switch",4);
-	$id = $this->RegisterVariableString("bluetoothname", "Bluetooth Name", "~String",5);
-	$id = $this->RegisterVariableInteger("volume", "Volume", "~Intensity.100",6);
-	$id = $this->RegisterVariableInteger("brightness", "Helligkeit", "~Intensity.100",7);
-	$id = $this->RegisterVariableBoolean("brightnessautomode", "Helligkeit Auto Modus", "~Switch",8);
+	$id = $this->RegisterVariableString("name", "Name", "~String",1);
+	$id = $this->RegisterVariableString("osversion", "OS Version", "~String",2);
+	$id = $this->RegisterVariableString("ssid", "SSID", "~String",3);
+	$id = $this->RegisterVariableInteger("wlanconnection", "WLan Empfang", "~Intensity.100",4);
+	$id = $this->RegisterVariableBoolean("bluetooth", "Bluetooth", "~Switch",5);
+	$id = $this->RegisterVariableString("bluetoothname", "Bluetooth Name", "~String",6);
+	$id = $this->RegisterVariableInteger("volume", "Volume", "~Intensity.100",7);
+	$id = $this->RegisterVariableInteger("brightness", "Helligkeit", "~Intensity.100",8);
+	$id = $this->RegisterVariableBoolean("brightnessautomode", "Helligkeit Auto Modus", "~Switch",9);
 	
 	$this->RegisterTimer('ReadData', $this->ReadPropertyInteger("intervall"), 'LM_readdata($id)');
 
