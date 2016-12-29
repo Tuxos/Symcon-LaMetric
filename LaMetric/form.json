@@ -15,7 +15,7 @@
     "actions":
     [
     
-	{ "type": "Button", "label": "Lese Daten ein", "onClick": "LM_readdata($id);" }
+	{ "type": "Button", "label": "Lese Daten ein", "onClick": "LM_readdata($id);" },
 	{ "type": "Button", "label": "Sende Testnachricht", "onClick": "LM_notification($id, ' Es funktioniert!', 'i4938', 'car');" }
 
     ],
