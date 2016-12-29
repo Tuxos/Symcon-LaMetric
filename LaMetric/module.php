@@ -20,8 +20,7 @@
 //			$helligkeitid = IPS_GetObjectIDByName('Helligkeit', $parentid);
 //			$mode = GetValueBoolean($modeid);
 //			$helligkeit = GetValueInteger($helligkeitid);
-//			LM_display($parentid,  $helligkeit, $mode);
-//			  ?>");
+//			LM_display($parentid,  $helligkeit, $mode); \?>");
  
 	}
 
