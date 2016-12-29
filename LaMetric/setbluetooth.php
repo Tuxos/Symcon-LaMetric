@@ -6,7 +6,7 @@
 	$bluetoothnameid = IPS_GetObjectIDByName('Bluetooth Name', $parentid);
 	$btid = IPS_GetObjectIDByName('Bluetooth', $parentid);
 	$mode = GetValueBoolean($btid);
-	$bluetoothname = GetValueInteger($bluetoothnameid);
+	$bluetoothname = GetValueString($bluetoothnameid);
 
 	LM_bluetooth($parentid, $bluetoothname, $mode);
 
