@@ -14,7 +14,7 @@
 		IPS_SetParent ($ScriptID, $this->InstanceID); 
 		IPS_SetName($ScriptID, "setdisplay");
 		IPS_SetHidden($ScriptID, true);
-		copy("../modules/Symcon-LaMetric/LaMetric/setdisplay.php", "./setdisplay.php");
+		copy(IPS_GetKernelDir()."/modules/Symcon-LaMetric/LaMetric/setdisplay.php", IPS_GetKernelDir().."/scripts/setdisplay.php");
 		IPS_SetScriptFile($ScriptID, "./setdisplay.php");
  
 	}
