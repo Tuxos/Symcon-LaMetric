@@ -13,6 +13,10 @@ Die LaMetric Instanz lässt sich einfach per Link ins WebFront einbinden. Alle K
 
 Ein bekannter Bug ist es, dass wenn man direkt an der LaMetric die Lautstärke per Taste ändert, der Wert in der App als auch in der API (sprich auch in IPSymcon) nicht aktualisiert angezeigt wird. Es wird der letzte bekannte Wert angezeigt. Wenn die Lautstärke per App oder API geändert wird, zeigt er die richtige Lautstärke an. Der Bug ist Smart Atoms gemeldet worden.
 
+Da dies mein erstes IPSymcon Modul ist, bitte ich um Nachsicht wenn etwas nicht 100% funktionieren sollte oder der Code schlecht ist. Gerne nehme ich Verbesserungsvorschläge an :-)
+
+Um einen berühmten Kollegen von mir zu Zitieren: "We accept pull requests!" :-D
+
 ##Notifications an eine LaMetric Time senden
 Befehl: `LM_notification(instanz-id, notification, icon, sound);`
 
