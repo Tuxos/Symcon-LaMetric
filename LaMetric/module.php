@@ -14,13 +14,7 @@
 		IPS_SetParent ($ScriptID, $this->InstanceID); 
 		IPS_SetName($ScriptID, "setdisplay");
 		IPS_SetHidden($ScriptID, true);
-//		IPS_SetScriptContent($ScriptID, "<?
-//			SetValue($_IPS['VARIABLE'], $_IPS['VALUE']);
-//			$parentid = IPS_GetParent($_IPS['VARIABLE']);
-//			$helligkeitid = IPS_GetObjectIDByName('Helligkeit', $parentid);
-//			$mode = GetValueBoolean($modeid);
-//			$helligkeit = GetValueInteger($helligkeitid);
-//			LM_display($parentid,  $helligkeit, $mode); ? >");
+		IPS_SetScriptFile($ScriptID, "../modules/Symcon-LaMetric/LaMetric/setdisplay.php");
  
 	}
 
