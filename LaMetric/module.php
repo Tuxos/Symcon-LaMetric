@@ -16,7 +16,7 @@
 
 	parent::ApplyChanges();
 
-	$intervall = $this->ReadPropertyInteger("intervall") * 1000;
+	// $intervall = $this->ReadPropertyInteger("intervall") * 1000;
 
 	$id = $this->RegisterVariableString("name", "Name", "~String",0);
 	$id = $this->RegisterVariableString("osversion", "OS Version", "~String",1);
@@ -28,7 +28,7 @@
 	$id = $this->RegisterVariableInteger("brightness", "Helligkeit", "~Intensity.100",7);
 	$id = $this->RegisterVariableBoolean("brightnessautomode", "Helligkeit Auto Modus", "~Switch",8);
 	
-	$this->RegisterTimer('ReadData', $intervall, 'LM_readdata($id)');
+	$this->RegisterTimer('ReadData', $this->ReadPropertyInteger("intervall"), 'LM_readdata($id)');
 
 //	$parentid = IPS_GetParent($id);
 //	$eid = IPS_CreateEvent(1);
