@@ -10,7 +10,7 @@
 		$this->RegisterPropertyString("apikey", "");
 		$this->RegisterPropertyInteger("intervall", "60");
 		
-		//erstelle Skript Hülle und kopiere die Daten setdisplay.php hinein
+		//erstelle Skript Hülle und kopiere die Daten der setdisplay.php hinein
 		$ScriptID = IPS_CreateScript(0);
 		IPS_SetParent ($ScriptID, $this->InstanceID); 
 		IPS_SetName($ScriptID, "setdisplay");
@@ -18,13 +18,21 @@
 		copy(IPS_GetKernelDir()."/modules/Symcon-LaMetric/LaMetric/setdisplay.php", IPS_GetKernelDir()."/scripts/LM_setdisplay.php");
 		IPS_SetScriptFile($ScriptID, "LM_setdisplay.php");
 
-		//erstelle Skript Hülle und kopiere die Daten setbluetooth.php hinein
+		//erstelle Skript Hülle und kopiere die Daten der setbluetooth.php hinein
 		$ScriptID = IPS_CreateScript(0);
 		IPS_SetParent ($ScriptID, $this->InstanceID); 
 		IPS_SetName($ScriptID, "setbluetooth");
 		IPS_SetHidden($ScriptID, true);
 		copy(IPS_GetKernelDir()."/modules/Symcon-LaMetric/LaMetric/setbluetooth.php", IPS_GetKernelDir()."/scripts/LM_setbluetooth.php");
 		IPS_SetScriptFile($ScriptID, "LM_setbluetooth.php");
+
+		//erstelle Skript Hülle und kopiere die Daten der setvolume.php hinein
+		$ScriptID = IPS_CreateScript(0);
+		IPS_SetParent ($ScriptID, $this->InstanceID); 
+		IPS_SetName($ScriptID, "setvolume");
+		IPS_SetHidden($ScriptID, true);
+		copy(IPS_GetKernelDir()."/modules/Symcon-LaMetric/LaMetric/setvolume.php", IPS_GetKernelDir()."/scripts/LM_setvolume.php");
+		IPS_SetScriptFile($ScriptID, "LM_setvolume.php");
  
 	}
 
@@ -202,6 +210,7 @@
 
 	}
 
+
 	// Display Konfiguration
 
 	public function display(integer $helligkeit,boolean $modus) {
@@ -246,6 +255,7 @@
 		curl_close($curl);	
 
 	}
+
 
 	// Bluetooth Konfiguration
 
@@ -293,6 +303,44 @@
 	curl_close($curl);
 
 	}
+
+
+	// Lautstärke Konfiguration
+
+	public function volume(integer $volume) {
+
+	$ip = $this->ReadPropertyString("ipadress");	
+	$apikey = $this->ReadPropertyString("apikey");
+	$key = base64_encode("dev:".$apikey);
+
+	$url = "http://".$ip.":8080/api/v2/device/audio";
+
+	$frames = array(
+		"volume" => $volume
+			);
+
+	$curl = curl_init();
+
+	$headers = array(
+		"Accept: application/json",
+		"Content-Type: application/json",
+		"Authorization: Basic ".$key,
+		"Cache-Control: no-cache",
+			);
+
+	curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+	curl_setopt($curl, CURLOPT_URL, $url);
+	curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+	curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'PUT');
+	curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($frames));
+
+	$response = curl_exec($curl);
+
+	curl_close($curl);
+
+	} 
 
     }
 ?>
