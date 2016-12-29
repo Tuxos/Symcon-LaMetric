@@ -24,7 +24,7 @@ Wenn kein Sound abgespielt werden soll kann das entsprechende Feld leer gelassen
 
 Beispiel Script:
 ----------------
-<?
-  LM_notification(49941 /*[Devices\LaMetric\LaMetric Büro]*/, "Hallo Welt!", "i43", "car");
-?>
+#<?
+#  LM_notification(49941 /*[Devices\LaMetric\LaMetric Büro]*/, "Hallo Welt!", "i43", "car");
+#?>
 ----------------
