@@ -16,8 +16,6 @@
 
 	parent::ApplyChanges();
 
-	// $intervall = $this->ReadPropertyInteger("intervall") * 1000;
-
 	$id = $this->RegisterVariableString("name", "Name", "~String",0);
 	$id = $this->RegisterVariableString("osversion", "OS Version", "~String",1);
 	$id = $this->RegisterVariableString("ssid", "SSID", "~String",2);
@@ -30,30 +28,25 @@
 	
 	$this->RegisterTimer('ReadData', $this->ReadPropertyInteger("intervall"), 'LM_readdata($id)');
 
-//	$parentid = IPS_GetParent($id);
-//	$eid = IPS_CreateEvent(1);
-//	IPS_SetParent($eid, $parentid);
-//	IPS_SetEventScript($eid, "LM_readdata($id)");
-//	IPS_SetEventCyclic($eid, 0, 0, 0, 2, 1, $this->ReadPropertyInteger("intervall"));
-//	IPS_SetEventActive($eid, true);
-
 	if (($this->ReadPropertyString("ipadress") != "") and ($this->ReadPropertyString("apikey") != ""))
 		{
 			$this->SetStatus(102);
-			// $this->readdata();
 		}
 
 	}
  
-// Register Time Function
+
+	// Register Time Function
 
 	protected function RegisterTimer($ident, $interval, $script) {
 
 		$id = @IPS_GetObjectIDByIdent($ident, $this->InstanceID);
+
 		if ($id && IPS_GetEvent($id)['EventType'] <> 1) {
 			IPS_DeleteEvent($id);
 			$id = 0;
 			}
+
 		if (!$id) {
 		$id = IPS_CreateEvent(1);
 		IPS_SetParent($id, $this->InstanceID);
