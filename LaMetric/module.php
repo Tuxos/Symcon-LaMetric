@@ -28,7 +28,10 @@
 	$id = $this->RegisterVariableInteger("brightness", "Helligkeit", "~Intensity.100",7);
 	$id = $this->RegisterVariableBoolean("brightnessautomode", "Helligkeit Auto Modus", "~Switch",8);
 	
-	$this->RegisterTimer('Read Data', $intervall, 'LM_readdata($id)');
+	if ((this->ReadPropertyString("ipadress") != "") and ($this->ReadPropertyString("apikey") != "")
+		{
+			$this->RegisterTimer('ReadData', $intervall, 'LM_readdata($id)');
+		}
 
 	}
  
