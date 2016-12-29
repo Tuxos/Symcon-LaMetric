@@ -20,8 +20,8 @@
     ],
     "status":
     [
-        { "code": 101, "icon": "active", "caption": "LaMetric Instanz ist aktiv" },
-        { "code": 102, "icon": "active", "caption": "LaMetric Instanz wird erstellt..." },
+        { "code": 101, "icon": "active", "caption": "LaMetric Instanz wird erstellt..." },
+        { "code": 102, "icon": "active", "caption": "LaMetric Instanz ist aktiv" },
         { "code": 202, "icon": "error", "caption": "Config falsch" },
     ]
 }

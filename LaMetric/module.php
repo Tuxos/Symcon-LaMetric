@@ -1,31 +1,33 @@
 <?
 
-    class LaMetric extends IPSModule {
+	class LaMetric extends IPSModule {
  
-        public function Create() {
+	public function Create() {
 
-            parent::Create();
+		parent::Create();
 
-            $this->RegisterPropertyString("ipadress", "");
-            $this->RegisterPropertyString("apikey", "");
+		$this->RegisterPropertyString("ipadress", "");
+		$this->RegisterPropertyString("apikey", "");
  
-        }
+	}
 
-        public function ApplyChanges() {
+	public function ApplyChanges() {
 
-            parent::ApplyChanges();
+	parent::ApplyChanges();
 
-	    $id = $this->RegisterVariableString("name", "Name", "~String",0);
-            $id = $this->RegisterVariableString("osversion", "OS Version", "~String",1);
-            $id = $this->RegisterVariableString("ssid", "SSID", "~String",2);
-	    $id = $this->RegisterVariableInteger("wlanconnection", "WLan Empfang", "~Intensity.100",3);
-	    $id = $this->RegisterVariableBoolean("bluetooth", "Bluetooth", "~Switch",4);
-	    $id = $this->RegisterVariableString("bluetoothname", "Bluetooth Name", "~String",5);
-	    $id = $this->RegisterVariableInteger("volume", "Volume", "~Intensity.100",6);
-	    $id = $this->RegisterVariableInteger("brightness", "Helligkeit", "~Intensity.100",7);
-	    $id = $this->RegisterVariableBoolean("brightnessautomode", "Helligkeit Auto Modus", "~Switch",8);
+	$id = $this->RegisterVariableString("name", "Name", "~String",0);
+	$id = $this->RegisterVariableString("osversion", "OS Version", "~String",1);
+	$id = $this->RegisterVariableString("ssid", "SSID", "~String",2);
+	$id = $this->RegisterVariableInteger("wlanconnection", "WLan Empfang", "~Intensity.100",3);
+	$id = $this->RegisterVariableBoolean("bluetooth", "Bluetooth", "~Switch",4);
+	$id = $this->RegisterVariableString("bluetoothname", "Bluetooth Name", "~String",5);
+	$id = $this->RegisterVariableInteger("volume", "Volume", "~Intensity.100",6);
+	$id = $this->RegisterVariableInteger("brightness", "Helligkeit", "~Intensity.100",7);
+	$id = $this->RegisterVariableBoolean("brightnessautomode", "Helligkeit Auto Modus", "~Switch",8);
 
-        }
+	$this->RegisterTimer("Update", 10000, "LM_readdata($id);");
+
+	}
  
 
 
@@ -42,34 +44,34 @@
 		$curl = curl_init();
 
 		$headers = array(
-		            "Accept: application/json",
-		            "Content-Type: application/json",
-		            "Authorization: Basic ".$key,
-		            "Cache-Control: no-cache",
-		        );
+			"Accept: application/json",
+			"Content-Type: application/json",
+			"Authorization: Basic ".$key,
+			"Cache-Control: no-cache"
+			);
 
-		 curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-		 curl_setopt($curl, CURLOPT_URL, $url);
-		 curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-		 curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-		 curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+		curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+		curl_setopt($curl, CURLOPT_URL, $url);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
 
-		 $response = curl_exec($curl);
-                 curl_close($curl);
+		$response = curl_exec($curl);
+		curl_close($curl);
 
-	         $data = json_decode($response);
+		$data = json_decode($response);
 
-	         if ($data->display->brightness_mode == "auto") { $mode=true; } else { $mode=false; };
+		if ($data->display->brightness_mode == "auto") { $mode=true; } else { $mode=false; };
 		 
-	         SetValue(IPS_GetObjectIDByName("Volume", $this->InstanceID), $data->audio->volume);
-	         SetValue(IPS_GetObjectIDByName("Helligkeit", $this->InstanceID),$data->display->brightness);
-	         SetValueBoolean(IPS_GetObjectIDByName("Helligkeit Auto Modus", $this->InstanceID),$mode);
-	         SetValueBoolean(IPS_GetObjectIDByName("Bluetooth", $this->InstanceID),$data->bluetooth->active);
-	         SetValue(IPS_GetObjectIDByName("Bluetooth Name", $this->InstanceID),$data->bluetooth->name);
-	         SetValue(IPS_GetObjectIDByName("Name", $this->InstanceID),$data->name);
-	         SetValue(IPS_GetObjectIDByName("OS Version", $this->InstanceID),$data->os_version);
-	         SetValue(IPS_GetObjectIDByName("SSID", $this->InstanceID),$data->wifi->essid);
-	         SetValue(IPS_GetObjectIDByName("WLan Empfang", $this->InstanceID),$data->wifi->strength);
+		SetValue(IPS_GetObjectIDByName("Volume", $this->InstanceID), $data->audio->volume);
+		SetValue(IPS_GetObjectIDByName("Helligkeit", $this->InstanceID),$data->display->brightness);
+		SetValueBoolean(IPS_GetObjectIDByName("Helligkeit Auto Modus", $this->InstanceID),$mode);
+		SetValueBoolean(IPS_GetObjectIDByName("Bluetooth", $this->InstanceID),$data->bluetooth->active);
+		SetValue(IPS_GetObjectIDByName("Bluetooth Name", $this->InstanceID),$data->bluetooth->name);
+		SetValue(IPS_GetObjectIDByName("Name", $this->InstanceID),$data->name);
+		SetValue(IPS_GetObjectIDByName("OS Version", $this->InstanceID),$data->os_version);
+		SetValue(IPS_GetObjectIDByName("SSID", $this->InstanceID),$data->wifi->essid);
+		SetValue(IPS_GetObjectIDByName("WLan Empfang", $this->InstanceID),$data->wifi->strength);
 	}
 
 
