@@ -30,9 +30,12 @@
 	$id = $this->RegisterVariableString("bluetoothname", "Bluetooth Name", "~String",6);
 	$id = $this->RegisterVariableInteger("volume", "Volume", "~Intensity.100",7);
 	$id = $this->RegisterVariableInteger("brightness", "Helligkeit", "~Intensity.100",8);
+	$ScriptID = IPS_GetScriptIDByName("setdisplay", $this->InstanceID);	
+	IPS_SetVariableCustomAction($id, $ScriptID);
 	$id = $this->RegisterVariableBoolean("brightnessautomode", "Helligkeit Auto Modus", "~Switch",9);
-	
+	IPS_SetVariableCustomAction($id, $ScriptID);
 	$this->RegisterTimer('ReadData', $this->ReadPropertyInteger("intervall"), 'LM_readdata($id)');
+
 
 	if (($this->ReadPropertyString("ipadress") != "") and ($this->ReadPropertyString("apikey") != ""))
 		{
