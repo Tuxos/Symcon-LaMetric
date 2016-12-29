@@ -191,11 +191,11 @@
 		echo "Helligkeit Modus = ".$modus."\n";
 
 		if ($modus == 1) {
-			$modus = "true";
+			$modus = "auto";
 			}
 			else
 			{
-			$modus = "false";
+			$modus = "manual";
 			}
 		echo "Helligkeit Modus nach Bearbeitung = ".$modus."\n";
 
