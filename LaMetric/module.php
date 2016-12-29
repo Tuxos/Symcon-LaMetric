@@ -8,6 +8,7 @@
 
 		$this->RegisterPropertyString("ipadress", "");
 		$this->RegisterPropertyString("apikey", "");
+		$this->RegisterPropertyInteger("intervall", "120");
  
 	}
 
@@ -25,7 +26,9 @@
 	$id = $this->RegisterVariableInteger("brightness", "Helligkeit", "~Intensity.100",7);
 	$id = $this->RegisterVariableBoolean("brightnessautomode", "Helligkeit Auto Modus", "~Switch",8);
 
-	$this->RegisterTimer("Update", 10000, "LM_readdata();");
+
+	$intervall = $this->ReadPropertyInteger("intervall") * 1000;
+	$this->RegisterTimer("Update", $intervall, "LM_readdata($id);");
 
 	}
  
