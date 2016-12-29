@@ -190,14 +190,14 @@
 
 		echo "Helligkeit Modus = ".$modus."\n";
 
-		if ($modus == 1) {
-			$modus = "true";
-			}
-			else
-			{
-			$modus = "false";
-			}
-		echo "Helligkeit Modus nach Bearbeitung = ".$modus."\n";
+	//	if ($modus == 1) {
+	//		$modus = "true";
+	//		}
+	//		else
+	//		{
+	//		$modus = "false";
+	//		}
+	//	echo "Helligkeit Modus nach Bearbeitung = ".$modus."\n";
 
 		$frames = array(
 			"brightness" => $helligkeit,
