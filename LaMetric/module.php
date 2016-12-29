@@ -9,6 +9,20 @@
 		$this->RegisterPropertyString("ipadress", "");
 		$this->RegisterPropertyString("apikey", "");
 		$this->RegisterPropertyInteger("intervall", "60");
+	
+		$ScriptID = IPS_CreateScript(0);
+		IPS_SetParent ($ScriptID, $this->InstanceID); 
+		IPS_SetName($ScriptID, "setdisplay");
+		IPS_SetHidden($ScriptID, true);
+		IPS_SetScriptContent($ScriptID, "<?
+			  SetValue($_IPS['VARIABLE'], $_IPS['VALUE']);
+			  $parentid = IPS_GetParent($_IPS['VARIABLE']);
+			  $modeid = IPS_GetObjectIDByName('Helligkeit Auto Modus', $parentid);
+			  $helligkeitid = IPS_GetObjectIDByName('Helligkeit', $parentid);
+			  $mode = GetValueBoolean($modeid);
+			  $helligkeit = GetValueInteger($helligkeitid); 
+			  LM_display($parentid,  $helligkeit, $mode);
+			?>");
  
 	}
 
