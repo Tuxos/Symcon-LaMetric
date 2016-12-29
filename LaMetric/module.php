@@ -8,7 +8,7 @@
 
 		$this->RegisterPropertyString("ipadress", "");
 		$this->RegisterPropertyString("apikey", "");
-		$this->RegisterPropertyInteger("intervall", "120");
+		$this->RegisterPropertyInteger("intervall", "60");
  
 	}
 
@@ -28,7 +28,7 @@
 
 
 	$intervall = $this->ReadPropertyInteger("intervall") * 1000;
-	$this->RegisterTimer("Update", $intervall, "LM_readdata($id);");
+	$this->RegisterTimer("Update", $intervall, "LM_readdata($id)");
 
 	}
  
