@@ -9,14 +9,16 @@
         { "type": "Label"             , "label": " " },
         { "type": "ValidationTextBox" , "name" : "ipadress", "caption": "IP Adresse" },
         { "type": "ValidationTextBox" , "name" : "apikey", "caption": "API Key" },
-        { "type": "ValidationTextBox" , "name" : "intervall", "caption": "Aktualisierungs Intervall" },
+        { "type": "ValidationTextBox" , "name" : "intervall", "caption": "Aktual. Intervall" },
         { "type": "Label"             , "label": " " },
+	{ "type": "Label"             , "label": "Damit die Konfiguration der LaMetric Time regelmäßig abgerufen werden kann, bitte einmal auf den 'Initialisiere LaMEtric Time' Button klicken." },
+	{ "type": "Label"             , "label": " " },
         { "type": "Label"             , "label": "Quellcode unter: https://github.com/Tuxos/Symcon-LaMetric/" },
     ],
     "actions":
     [
     
-        { "type": "Button", "label": "Lese LaMetric Daten ein", "onClick": "LM_readdata($id);" },
+        { "type": "Button", "label": "Initialisiere LaMetric Time", "onClick": "LM_readdata($id);" },
 	{ "type": "Button", "label": "Sende Testnachricht", "onClick": "LM_notification($id, ' Es funktioniert!', 'i4938', 'car');" }
 
     ],
