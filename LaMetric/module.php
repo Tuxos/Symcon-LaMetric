@@ -16,6 +16,8 @@
 
 	parent::ApplyChanges();
 
+	$intervall = $this->ReadPropertyInteger("intervall") * 1000;
+
 	$id = $this->RegisterVariableString("name", "Name", "~String",0);
 	$id = $this->RegisterVariableString("osversion", "OS Version", "~String",1);
 	$id = $this->RegisterVariableString("ssid", "SSID", "~String",2);
@@ -25,10 +27,7 @@
 	$id = $this->RegisterVariableInteger("volume", "Volume", "~Intensity.100",6);
 	$id = $this->RegisterVariableInteger("brightness", "Helligkeit", "~Intensity.100",7);
 	$id = $this->RegisterVariableBoolean("brightnessautomode", "Helligkeit Auto Modus", "~Switch",8);
-
-
-	$intervall = $this->ReadPropertyInteger("intervall") * 1000;
-	$this->RegisterTimer("Update", $intervall, "LM_readdata($id)");
+	$id = $this->RegisterTimer("Update", $intervall, "LM_readdata()", 9);
 
 	}
  
