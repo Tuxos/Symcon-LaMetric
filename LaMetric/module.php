@@ -1,7 +1,7 @@
 <?
 
 	class LaMetric extends IPSModule {
- 
+
 	public function Create() {
 
 		parent::Create();
@@ -9,18 +9,20 @@
 		$this->RegisterPropertyString("ipadress", "");
 		$this->RegisterPropertyString("apikey", "");
 		$this->RegisterPropertyInteger("intervall", "60");
-		
+
 		//erstelle Skript Hülle und kopiere die Daten der setdisplay.php hinein
-		$ScriptID = IPS_CreateScript(0);
-		IPS_SetParent ($ScriptID, $this->InstanceID); 
-		IPS_SetName($ScriptID, "setdisplay");
-		IPS_SetHidden($ScriptID, true);
-		copy(IPS_GetKernelDir()."/modules/Symcon-LaMetric/LaMetric/setdisplay.php", IPS_GetKernelDir()."/scripts/LM_setdisplay.php");
-		IPS_SetScriptFile($ScriptID, "LM_setdisplay.php");
+		if (file_exists(IPS_GetKernelDir()."/scripts/LM_setdisplay.php") == false) {
+			$ScriptID = IPS_CreateScript(0);
+			IPS_SetParent ($ScriptID, $this->InstanceID);
+			IPS_SetName($ScriptID, "setdisplay");
+			IPS_SetHidden($ScriptID, true);
+			copy(IPS_GetKernelDir()."/modules/Symcon-LaMetric/LaMetric/setdisplay.php", IPS_GetKernelDir()."/scripts/LM_setdisplay.php");
+			IPS_SetScriptFile($ScriptID, "LM_setdisplay.php");
+		}
 
 		//erstelle Skript Hülle und kopiere die Daten der setbluetooth.php hinein
 		$ScriptID = IPS_CreateScript(0);
-		IPS_SetParent ($ScriptID, $this->InstanceID); 
+		IPS_SetParent ($ScriptID, $this->InstanceID);
 		IPS_SetName($ScriptID, "setbluetooth");
 		IPS_SetHidden($ScriptID, true);
 		copy(IPS_GetKernelDir()."/modules/Symcon-LaMetric/LaMetric/setbluetooth.php", IPS_GetKernelDir()."/scripts/LM_setbluetooth.php");
@@ -28,12 +30,12 @@
 
 		//erstelle Skript Hülle und kopiere die Daten der setvolume.php hinein
 		$ScriptID = IPS_CreateScript(0);
-		IPS_SetParent ($ScriptID, $this->InstanceID); 
+		IPS_SetParent ($ScriptID, $this->InstanceID);
 		IPS_SetName($ScriptID, "setvolume");
 		IPS_SetHidden($ScriptID, true);
 		copy(IPS_GetKernelDir()."/modules/Symcon-LaMetric/LaMetric/setvolume.php", IPS_GetKernelDir()."/scripts/LM_setvolume.php");
 		IPS_SetScriptFile($ScriptID, "LM_setvolume.php");
- 
+
 	}
 
 	public function ApplyChanges() {
@@ -45,15 +47,15 @@
 	$id = $this->RegisterVariableString("ssid", "SSID", "~String",3);
 	$id = $this->RegisterVariableInteger("wlanconnection", "WLan Empfang", "~Intensity.100",4);
 	$id = $this->RegisterVariableBoolean("bluetooth", "Bluetooth", "~Switch",5);
-	$ScriptID = IPS_GetScriptIDByName("setbluetooth", $this->InstanceID);	
+	$ScriptID = IPS_GetScriptIDByName("setbluetooth", $this->InstanceID);
 	IPS_SetVariableCustomAction($id, $ScriptID);
 	$id = $this->RegisterVariableString("bluetoothname", "Bluetooth Name", "~String",6);
 	IPS_SetVariableCustomAction($id, $ScriptID);
 	$id = $this->RegisterVariableInteger("volume", "Volume", "~Intensity.100",7);
-	$ScriptID = IPS_GetScriptIDByName("setvolume", $this->InstanceID);	
+	$ScriptID = IPS_GetScriptIDByName("setvolume", $this->InstanceID);
 	IPS_SetVariableCustomAction($id, $ScriptID);
 	$id = $this->RegisterVariableInteger("brightness", "Helligkeit", "~Intensity.100",8);
-	$ScriptID = IPS_GetScriptIDByName("setdisplay", $this->InstanceID);	
+	$ScriptID = IPS_GetScriptIDByName("setdisplay", $this->InstanceID);
 	IPS_SetVariableCustomAction($id, $ScriptID);
 	$id = $this->RegisterVariableBoolean("brightnessautomode", "Helligkeit Auto Modus", "~Switch",9);
 	IPS_SetVariableCustomAction($id, $ScriptID);
@@ -67,7 +69,7 @@
 		}
 
 	}
- 
+
 
 	// Erstelle Events
 
@@ -85,12 +87,12 @@
 		IPS_SetParent($id, $this->InstanceID);
 		IPS_SetIdent($id, $ident);
 		}
-		
+
 		IPS_SetName($id, $ident);
 		IPS_SetHidden($id, true);
 		IPS_SetEventScript($id, "\$id = \$_IPS['TARGET'];\n$script;");
 		if (!IPS_EventExists($id)) throw new Exception("Ident with name $ident is used for wrong object type");
-		
+
 		if (!($interval > 0)) {
 			IPS_SetEventCyclic($id, 0, 0, 0, 0, 1, 1);
 			IPS_SetEventActive($id, false);
@@ -104,7 +106,7 @@
 
         public function readdata() {
 
-		$ip = $this->ReadPropertyString("ipadress");	
+		$ip = $this->ReadPropertyString("ipadress");
 		$apikey = $this->ReadPropertyString("apikey");
 		$key = base64_encode("dev:".$apikey);
 
@@ -131,7 +133,7 @@
 		$data = json_decode($response);
 
 		if ($data->display->brightness_mode == "auto") { $mode=true; } else { $mode=false; };
-		 
+
 		SetValue(IPS_GetObjectIDByName("Volume", $this->InstanceID), $data->audio->volume);
 		SetValue(IPS_GetObjectIDByName("Helligkeit", $this->InstanceID),$data->display->brightness);
 		SetValueBoolean(IPS_GetObjectIDByName("Helligkeit Auto Modus", $this->InstanceID),$mode);
@@ -205,7 +207,7 @@
 		curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
 		curl_setopt($curl, CURLOPT_POST, 1);
 		curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($frames));
-		
+
 		$response = curl_exec($curl);
 
 		curl_close($curl);
@@ -216,8 +218,8 @@
 	// Display Konfiguration
 
 	public function display(integer $helligkeit,boolean $modus) {
-	
-		$ip = $this->ReadPropertyString("ipadress");	
+
+		$ip = $this->ReadPropertyString("ipadress");
 		$apikey = $this->ReadPropertyString("apikey");
 		$key = base64_encode("dev:".$apikey);
 		$url = "http://".$ip.":8080/api/v2/device/display";
@@ -254,7 +256,7 @@
 
 		$response = curl_exec($curl);
 
-		curl_close($curl);	
+		curl_close($curl);
 
 	}
 
@@ -263,7 +265,7 @@
 
 	public function bluetooth(string $btname, boolean $btactive) {
 
-	$ip = $this->ReadPropertyString("ipadress");	
+	$ip = $this->ReadPropertyString("ipadress");
 	$apikey = $this->ReadPropertyString("apikey");
 	$key = base64_encode("dev:".$apikey);
 
@@ -311,7 +313,7 @@
 
 	public function volume(integer $volume) {
 
-	$ip = $this->ReadPropertyString("ipadress");	
+	$ip = $this->ReadPropertyString("ipadress");
 	$apikey = $this->ReadPropertyString("apikey");
 	$key = base64_encode("dev:".$apikey);
 
@@ -342,7 +344,7 @@
 
 	curl_close($curl);
 
-	} 
+	}
 
     }
 ?>
