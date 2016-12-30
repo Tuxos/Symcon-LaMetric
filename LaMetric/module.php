@@ -10,23 +10,33 @@
 		$this->RegisterPropertyString("apikey", "");
 		$this->RegisterPropertyInteger("intervall", "60");
 
+		//erstelle Skript Hülle und kopiere die Daten der setdisplay.php hinein
+		if (file_exists(IPS_GetKernelDir()."/scripts/LM_setdisplay.php") == false) {
+			$ScriptID = IPS_CreateScript(0);
+			IPS_SetParent ($ScriptID, $this->InstanceID);
+			IPS_SetName($ScriptID, "setdisplay");
+			IPS_SetHidden($ScriptID, true);
+			copy(IPS_GetKernelDir()."/modules/Symcon-LaMetric/LaMetric/setdisplay.php", IPS_GetKernelDir()."/scripts/LM_setdisplay.php");
+			IPS_SetScriptFile($ScriptID, "LM_setdisplay.php");
+		}
+
 		//erstelle Skript Hülle und kopiere die Daten der setbluetooth.php hinein
-		copy(IPS_GetKernelDir()."/modules/Symcon-LaMetric/LaMetric/setbluetooth.php", IPS_GetKernelDir()."/scripts/LM_setbluetooth.php");
 		if (file_exists(IPS_GetKernelDir()."/scripts/LM_setbluetooth.php") == false) {
 			$ScriptID = IPS_CreateScript(0);
 			IPS_SetParent ($ScriptID, $this->InstanceID);
 			IPS_SetName($ScriptID, "setbluetooth");
 			IPS_SetHidden($ScriptID, true);
+			copy(IPS_GetKernelDir()."/modules/Symcon-LaMetric/LaMetric/setbluetooth.php", IPS_GetKernelDir()."/scripts/LM_setbluetooth.php");
 			IPS_SetScriptFile($ScriptID, "LM_setbluetooth.php");
 		}
 
 		//erstelle Skript Hülle und kopiere die Daten der setvolume.php hinein
-		copy(IPS_GetKernelDir()."/modules/Symcon-LaMetric/LaMetric/setvolume.php", IPS_GetKernelDir()."/scripts/LM_setvolume.php");
 		if (file_exists(IPS_GetKernelDir()."/scripts/LM_setvolume.php") == false) {
 			$ScriptID = IPS_CreateScript(0);
 			IPS_SetParent ($ScriptID, $this->InstanceID);
 			IPS_SetName($ScriptID, "setvolume");
 			IPS_SetHidden($ScriptID, true);
+			copy(IPS_GetKernelDir()."/modules/Symcon-LaMetric/LaMetric/setvolume.php", IPS_GetKernelDir()."/scripts/LM_setvolume.php");
 			IPS_SetScriptFile($ScriptID, "LM_setvolume.php");
 		}
 
@@ -35,16 +45,6 @@
 	public function ApplyChanges() {
 
 	parent::ApplyChanges();
-
-	//erstelle Skript Hülle und kopiere die Daten der setdisplay.php hinein
-	copy(IPS_GetKernelDir()."/modules/Symcon-LaMetric/LaMetric/setdisplay.php", IPS_GetKernelDir()."/scripts/LM_setdisplay.php");
-	if (file_exists(IPS_GetKernelDir()."/scripts/LM_setdisplay.php") == false) {
-		$ScriptID = IPS_CreateScript(0);
-		IPS_SetParent ($ScriptID, $this->InstanceID);
-		IPS_SetName($ScriptID, "setdisplay");
-		IPS_SetHidden($ScriptID, true);
-		IPS_SetScriptFile($ScriptID, "LM_setdisplay.php");
-	}
 
 	$id = $this->RegisterVariableString("name", "Name", "~String",1);
 	$id = $this->RegisterVariableString("osversion", "OS Version", "~String",2);
