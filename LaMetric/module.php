@@ -12,7 +12,7 @@
 
 		//erstelle Skript Hülle und kopiere die Daten der setdisplay.php hinein
 		copy(IPS_GetKernelDir()."/modules/Symcon-LaMetric/LaMetric/setdisplay.php", IPS_GetKernelDir()."/scripts/LM_setdisplay.php");
-		if (IPS_GetScriptIDByName("setdisplay", $this->InstanceID) == false) {
+		if (@IPS_GetScriptIDByName("setdisplay", $this->InstanceID) == false) {
 			$ScriptID = IPS_CreateScript(0);
 			IPS_SetParent ($ScriptID, $this->InstanceID);
 			IPS_SetName($ScriptID, "setdisplay");
@@ -22,7 +22,7 @@
 
 		//erstelle Skript Hülle und kopiere die Daten der setbluetooth.php hinein
 		copy(IPS_GetKernelDir()."/modules/Symcon-LaMetric/LaMetric/setbluetooth.php", IPS_GetKernelDir()."/scripts/LM_setbluetooth.php");
-		if (IPS_GetScriptIDByName("setbluetooth", $this->InstanceID) == false) {
+		if (@IPS_GetScriptIDByName("setbluetooth", $this->InstanceID) == false) {
 			$ScriptID = IPS_CreateScript(0);
 			IPS_SetParent ($ScriptID, $this->InstanceID);
 			IPS_SetName($ScriptID, "setbluetooth");
@@ -32,7 +32,7 @@
 
 		//erstelle Skript Hülle und kopiere die Daten der setvolume.php hinein
 		copy(IPS_GetKernelDir()."/modules/Symcon-LaMetric/LaMetric/setvolume.php", IPS_GetKernelDir()."/scripts/LM_setvolume.php");
-		if (IPS_GetScriptIDByName("setvolume", $this->InstanceID) == false) {
+		if (@IPS_GetScriptIDByName("setvolume", $this->InstanceID) == false) {
 			$ScriptID = IPS_CreateScript(0);
 			IPS_SetParent ($ScriptID, $this->InstanceID);
 			IPS_SetName($ScriptID, "setvolume");
