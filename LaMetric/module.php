@@ -8,7 +8,7 @@
 
 		$this->RegisterPropertyString("ipadress", "");
 		$this->RegisterPropertyString("apikey", "");
-		$this->RegisterPropertyInteger("intervall", "60");
+		$this->RegisterPropertyInteger("intervall", "120");
 
 		//erstelle Skript Hülle und kopiere die Daten der setdisplay.php hinein
 		copy(IPS_GetKernelDir()."/modules/Symcon-LaMetric/LaMetric/setdisplay.php", IPS_GetKernelDir()."/scripts/LM_setdisplay.php");

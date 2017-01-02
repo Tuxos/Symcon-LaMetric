@@ -11,13 +11,13 @@ Das Aktualisierungs Intervall legt fest alle wieviel Sekunden die Konfigurations
 
 Die LaMetric Instanz lässt sich einfach per Link ins WebFront einbinden. Alle Konfigurierbaren Parameter können direkt im WebFront eingestellt werden.
 
-Jede Kommunikation bleibt im internen Netz und geht direkt auf die LaMetric Time API und nicht über die Cloud API. Deswegen auch nur http statt https Verbindungen.
+Jede Kommunikation bleibt im internen Netz und geht direkt auf die LaMetric Time API und nicht über die Cloud API.
+
+Die Variablen dürfen nicht umbenannt werden, da geprüft wird ob diese unter diesem Namen existieren. Wenn sie im Webfront einen anderen Namen haben sollen, bitte einen Link auf die Variablen setzen und diesen den gewünschten Namen geben.
 
 Ein bekannter Bug ist es, dass wenn man direkt an der LaMetric die Lautstärke per Taste ändert, der Wert in der App als auch in der API (sprich auch in IPSymcon) nicht aktualisiert angezeigt wird. Es wird der letzte bekannte Wert angezeigt. Wenn die Lautstärke per App oder API geändert wird, zeigt er die richtige Lautstärke an. Der Bug ist Smart Atoms gemeldet worden.
 
 Da dies mein erstes IPSymcon Modul ist, bitte ich um Nachsicht wenn etwas nicht 100% funktionieren sollte oder der Code schlecht ist. Gerne nehme ich Verbesserungsvorschläge an :-)
-
-Um einen berühmten Kollegen von mir zu Zitieren: "We accept pull requests!" :-D
 
 Link zum IPSymcon Forum Thread: https://www.symcon.de/forum/threads/33536-LaMetric-Time-Modul
 
