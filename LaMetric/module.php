@@ -56,7 +56,7 @@
 	$id = $this->RegisterVariableString("bluetoothname", "Bluetooth Name", "~String",6);
 	IPS_SetVariableCustomAction($id, $ScriptID);
 	$id = $this->RegisterVariableInteger("volume", "Volume", "~Intensity.100",7);
-	$ScriptID = IPS_GetScriptIDByName("setvolume", $this->InstanceID);
+	//$ScriptID = IPS_GetScriptIDByName("setvolume", $this->InstanceID);
 	//IPS_SetVariableCustomAction($id, $ScriptID);
 	$id = $this->RegisterVariableInteger("brightness", "Helligkeit", "~Intensity.100",8);
 	$ScriptID = IPS_GetScriptIDByName("setdisplay", $this->InstanceID);
