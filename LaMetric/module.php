@@ -74,7 +74,10 @@
 	}
 
 	//API Call function
-	public function callapi(string $url, string $key, array $frames) {
+	public function callapi(string $url, array $frames) {
+
+		$apikey = $this->ReadPropertyString("apikey");
+		$key = base64_encode("dev:".$apikey);
 
 		$curl = curl_init();
 
@@ -250,8 +253,6 @@
 	public function alarm($notification, $icon, $sound, $repeat) {
 
 		$ip = $this->ReadPropertyString("ipadress");
-		$apikey = $this->ReadPropertyString("apikey");
-		$key = base64_encode("dev:".$apikey);
 
 		$url = "http://".$ip.":8080/api/v2/device/notifications";
 
@@ -290,7 +291,7 @@
 			));
 			}
 
-		LM_callapi($this->InstanceID, $url, $key, $frames);
+		LM_callapi($this->InstanceID, $url, $frames);
 
 	}
 
