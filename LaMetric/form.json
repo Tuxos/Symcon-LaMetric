@@ -1,15 +1,13 @@
 {
     "elements":
     [
-        { "type": "Label"             , "label": "################ LaMetric Modul early adopter version ################" },
-	{ "type": "Label"             , "label": " " },
         { "type": "ValidationTextBox" , "name" : "ipadress", "caption": "IP Adresse" },
         { "type": "ValidationTextBox" , "name" : "apikey", "caption": "API Key" },
         { "type": "ValidationTextBox" , "name" : "intervall", "caption": "Aktual. Intervall" }
     ],
     "actions":
     [
-    
+
 	{ "type": "Button", "label": "Lese Konfiguration ein", "onClick": "LM_readdata($id);" },
 	{ "type": "Button", "label": "Sende Testnachricht", "onClick": "LM_notification($id, ' Es funktioniert!', 'i4938', 'car');" }
 

@@ -73,6 +73,19 @@
 
 	}
 
+	// Aktions Script zum ändern der Lautstärke bei änderung der Variable
+	public function setvolume() {
+		
+		SetValue($_IPS['VARIABLE'], $_IPS['VALUE']);
+
+		$parentid = IPS_GetParent($_IPS['VARIABLE']);
+		$volumeid = IPS_GetObjectIDByName('Volume', $parentid);
+		$volume = GetValueInteger($volumeid);
+
+		LM_volume($parentid, $volume);
+	}
+
+
 	// Erstelle Events
 
 	protected function RegisterTimer($ident, $interval, $script) {
