@@ -74,7 +74,7 @@
 	}
 
 	//API Call function
-	protected function callapi(string $url, array $frames) {
+	public function callapi(string $url, array $frames) {
 
 		$apikey = $this->ReadPropertyString("apikey");
 		$key = base64_encode("dev:".$apikey);
@@ -291,7 +291,7 @@
 			));
 			}
 
-		callapi($this->InstanceID, $url, $frames);
+		LM_callapi($this->InstanceID, $url, $frames);
 
 	}
 
