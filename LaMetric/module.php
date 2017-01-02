@@ -290,7 +290,7 @@
 			));
 			}
 
-		LM_callapi($url, $key, $frames);
+		LM_callapi($this->InstanceID, $url, $key, $frames);
 
 	}
 
