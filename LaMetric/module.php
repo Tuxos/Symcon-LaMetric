@@ -74,7 +74,7 @@
 	}
 
 	//API Call function
-	public function callapi($url, $key, $headers, $frames) {
+	public function callapi($url, $key, $frames) {
 
 		$curl = curl_init();
 
@@ -290,7 +290,7 @@
 			));
 			}
 
-		LM_callapi($url, $key, $headers, $frames);
+		LM_callapi($url, $key, $frames);
 
 	}
 
