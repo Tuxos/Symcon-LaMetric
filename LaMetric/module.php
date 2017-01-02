@@ -247,7 +247,7 @@
 	}
 
 	// Gibt einen Alarm auf LaMetric aus
-	public function alarm($notification, $icon, $sound,integer $repeat) {
+	public function alarm($notification, $icon, $sound, $repeat) {
 
 		$ip = $this->ReadPropertyString("ipadress");
 		$apikey = $this->ReadPropertyString("apikey");
@@ -290,7 +290,7 @@
 			));
 			}
 
-		callapi($url, $key, $headers, $frames);
+		LM_callapi($url, $key, $headers, $frames);
 
 	}
 
