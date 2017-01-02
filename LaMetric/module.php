@@ -234,7 +234,7 @@
 			"priority" => "critical",
 			"icon_type" => "alert",
 			"model" => array(
-			"cycles" => 1,
+			"cycles" => 0,
 			"frames" => array(
 				array(
 					"icon" => $icon,
@@ -254,12 +254,12 @@
 				"priority" => "critical",
 				"icon_type" => "alert",
 				"model" => array(
-				"cycles" => 1,
+				"cycles" => 0,
 				"frames" => array(
 				array(
 					"icon" => $icon,
 					"text" => $notification
-					)
+				)
 				),
 			));
 			}
