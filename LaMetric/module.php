@@ -31,14 +31,14 @@
 		}
 
 		//erstelle Skript Hülle und kopiere die Daten der setvolume.php hinein
-		//copy(IPS_GetKernelDir()."/modules/Symcon-LaMetric/LaMetric/setvolume.php", IPS_GetKernelDir()."/scripts/LM_setvolume.php");
-		//if (@IPS_GetScriptIDByName("setvolume", $this->InstanceID) == false) {
-		//	$ScriptID = IPS_CreateScript(0);
-		//	IPS_SetParent ($ScriptID, $this->InstanceID);
-		//	IPS_SetName($ScriptID, "setvolume");
-		//	IPS_SetHidden($ScriptID, true);
-		//	IPS_SetScriptFile($ScriptID, "LM_setvolume.php");
-		//}
+		copy(IPS_GetKernelDir()."/modules/Symcon-LaMetric/LaMetric/setvolume.php", IPS_GetKernelDir()."/scripts/LM_setvolume.php");
+		if (@IPS_GetScriptIDByName("setvolume", $this->InstanceID) == false) {
+			$ScriptID = IPS_CreateScript(0);
+			IPS_SetParent ($ScriptID, $this->InstanceID);
+			IPS_SetName($ScriptID, "setvolume");
+			IPS_SetHidden($ScriptID, true);
+			IPS_SetScriptFile($ScriptID, "LM_setvolume.php");
+		}
 
 	}
 
@@ -56,8 +56,8 @@
 	$id = $this->RegisterVariableString("bluetoothname", "Bluetooth Name", "~String",6);
 	IPS_SetVariableCustomAction($id, $ScriptID);
 	$id = $this->RegisterVariableInteger("volume", "Volume", "~Intensity.100",7);
-	//$ScriptID = IPS_GetScriptIDByName("setvolume", $this->InstanceID);
-	//IPS_SetVariableCustomAction($id, $ScriptID);
+	$ScriptID = IPS_GetScriptIDByName("setvolume", $this->InstanceID);
+	IPS_SetVariableCustomAction($id, $ScriptID);
 	$id = $this->RegisterVariableInteger("brightness", "Helligkeit", "~Intensity.100",8);
 	$ScriptID = IPS_GetScriptIDByName("setdisplay", $this->InstanceID);
 	IPS_SetVariableCustomAction($id, $ScriptID);
@@ -72,19 +72,6 @@
 		}
 
 	}
-
-	// Aktions Script zum ändern der Lautstärke bei änderung der Variable
-	public function setvolume() {
-
-		SetValue($_IPS['VARIABLE'], $_IPS['VALUE']);
-
-		$parentid = IPS_GetParent($_IPS['VARIABLE']);
-		$volumeid = IPS_GetObjectIDByName('Volume', $parentid);
-		$volume = GetValueInteger($volumeid);
-
-		LM_volume($parentid, $volume);
-	}
-
 
 	// Erstelle Events
 
