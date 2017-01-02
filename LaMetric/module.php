@@ -290,7 +290,7 @@
 			));
 			}
 
-		LM_callapi($url, $key, $headers, $frames);
+		callapi($url, $key, $headers, $frames);
 
 	}
 
