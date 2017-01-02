@@ -74,7 +74,7 @@
 	}
 
 	//API Call function
-	protected function callapi($url, $key, $headers, $frames) {
+	public function callapi($url, $key, $headers, $frames) {
 
 		$curl = curl_init();
 
