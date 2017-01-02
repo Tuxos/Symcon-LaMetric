@@ -45,6 +45,36 @@ Wenn kein Sound abgespielt werden soll kann das entsprechende Feld leer gelassen
   LM_notification(49941 /*[Devices\LaMetric\LaMetric Büro]*/, "Hallo Welt!", "i43", "car");
 ?>
 ```
+##Einen Alarm auf einer LaMetric Time ausgeben
+Ein Alarm wird solange angezeigt bis er an der LaMetric bestätigt wird.
+
+Befehl: `LM_alarm(instanz-id, notification, icon, sound, repeat);`
+
+###instanz-id
+Die Objekt-ID der LaMetric Time.
+
+###notification
+Die Nachricht die angezeigt werden soll.
+
+###icon
+Die Nummer des Icons mit führendem "i".
+Die zur Verfügung stehenden Icons können unter https://developer.lametric.com/icons eingesehen werden.
+Wenn kein Icon angezeigt werden soll kann das entsprechende Feld leer gelassen werden. "" sind notwendig.
+
+###sound
+Unter http://lametric-documentation.readthedocs.io/en/latest/reference-docs/device-notifications.html findet sich eine Liste an Sounds. Nur die der alarm id funktionieren.
+Wenn kein Sound abgespielt werden soll kann das entsprechende Feld leer gelassen werden. "" sind notwendig.
+
+###repeat
+Wie häufig der Sound gespielt werden soll. 0 = bis der Alarm auf der LaMetric bestätigt wird.
+
+###Beispiel
+```
+<?
+  LM_alarm(49941 /*[Devices\LaMetric\LaMetric Büro]*/, "Die Hütte Brennt!!!", "i1003", "alarm6", 0);
+?>
+```
+
 
 ##Lautstärke konfigurieren
 Befehl: `LM_volume(instanz-id, volume);`

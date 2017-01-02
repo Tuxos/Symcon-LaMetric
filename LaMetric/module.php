@@ -221,7 +221,7 @@
 	}
 
 	// Gibt einen Alarm auf LaMetric aus
-	public function alarm($notification, $icon, $sound) {
+	public function alarm($notification, $icon, $sound, $repeat) {
 
 		$ip = $this->ReadPropertyString("ipadress");
 		$apikey = $this->ReadPropertyString("apikey");
@@ -244,7 +244,7 @@
 			"sound" => array(
 			"category" => "alarms",
 			"id" => $sound,
-			"repeat" => 1
+			"repeat" => $repeat
 					)
 				));
 			}
