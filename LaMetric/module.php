@@ -74,7 +74,7 @@
 	}
 
 	//API Call function
-	public function callapi($url, $key, $frames) {
+	public function callapi(string $url, string $key, array $frames) {
 
 		$curl = curl_init();
 
