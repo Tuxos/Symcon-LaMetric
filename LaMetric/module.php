@@ -74,7 +74,7 @@
 	}
 
 	//API Call function
-	public function callapi(string $url, array $frames) {
+	protected function callapi(string $url, array $frames) {
 
 		$apikey = $this->ReadPropertyString("apikey");
 		$key = base64_encode("dev:".$apikey);
