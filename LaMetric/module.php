@@ -73,6 +73,32 @@
 
 	}
 
+	//API Call function
+	private function callapi($url, $key, $headers, $frames) {
+
+		$curl = curl_init();
+
+		$headers = array(
+			"Accept: application/json",
+			"Content-Type: application/json",
+			"Authorization: Basic ".$key,
+			"Cache-Control: no-cache",
+			);
+
+		curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+		curl_setopt($curl, CURLOPT_URL, $url);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+		curl_setopt($curl, CURLOPT_POST, 1);
+		curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($frames));
+
+		curl_exec($curl);
+		curl_close($curl);
+
+	}
+
+
 	// Erstelle Events
 	protected function RegisterTimer($ident, $interval, $script) {
 
@@ -221,7 +247,7 @@
 	}
 
 	// Gibt einen Alarm auf LaMetric aus
-	public function alarm($notification, $icon, $sound, $repeat) {
+	public function alarm($notification, $icon, $sound,integer $repeat) {
 
 		$ip = $this->ReadPropertyString("ipadress");
 		$apikey = $this->ReadPropertyString("apikey");
@@ -264,26 +290,7 @@
 			));
 			}
 
-		$curl = curl_init();
-
-		$headers = array(
-			"Accept: application/json",
-			"Content-Type: application/json",
-			"Authorization: Basic ".$key,
-			"Cache-Control: no-cache",
-			);
-
-		curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-		curl_setopt($curl, CURLOPT_URL, $url);
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-		curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-		curl_setopt($curl, CURLOPT_POST, 1);
-		curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($frames));
-
-		$response = curl_exec($curl);
-
-		curl_close($curl);
+		callapi($url, $key, $headers, $frames);
 
 	}
 

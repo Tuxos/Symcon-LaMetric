@@ -47,6 +47,7 @@ Wenn kein Sound abgespielt werden soll kann das entsprechende Feld leer gelassen
 ```
 ##Einen Alarm auf einer LaMetric Time ausgeben
 Ein Alarm wird solange angezeigt bis er an der LaMetric bestätigt wird.
+Evtl. vorher die Lautstärke mit `LM_volume(instanz-id, volume);` setzen.
 
 Befehl: `LM_alarm(instanz-id, notification, icon, sound, repeat);`
 
