@@ -44,37 +44,36 @@
 
 	public function ApplyChanges() {
 
-	parent::ApplyChanges();
+		parent::ApplyChanges();
 
-	$id = $this->RegisterVariableString("name", "Name", "~String",1);
-	$id = $this->RegisterVariableString("osversion", "OS Version", "~String",2);
-	$id = $this->RegisterVariableString("ssid", "SSID", "~String",3);
-	$id = $this->RegisterVariableInteger("wlanconnection", "WLan Empfang", "~Intensity.100",4);
-	$id = $this->RegisterVariableBoolean("bluetooth", "Bluetooth", "~Switch",5);
-	$ScriptID = IPS_GetScriptIDByName("setbluetooth", $this->InstanceID);
-	IPS_SetVariableCustomAction($id, $ScriptID);
-	$id = $this->RegisterVariableString("bluetoothname", "Bluetooth Name", "~String",6);
-	IPS_SetVariableCustomAction($id, $ScriptID);
-	$id = $this->RegisterVariableInteger("volume", "Volume", "~Intensity.100",7);
-	$ScriptID = IPS_GetScriptIDByName("setvolume", $this->InstanceID);
-	IPS_SetVariableCustomAction($id, $ScriptID);
-	$id = $this->RegisterVariableInteger("brightness", "Helligkeit", "~Intensity.100",8);
-	$ScriptID = IPS_GetScriptIDByName("setdisplay", $this->InstanceID);
-	IPS_SetVariableCustomAction($id, $ScriptID);
-	$id = $this->RegisterVariableBoolean("brightnessautomode", "Helligkeit Auto Modus", "~Switch",9);
-	IPS_SetVariableCustomAction($id, $ScriptID);
+		$id = $this->RegisterVariableString("name", "Name", "~String",1);
+		$id = $this->RegisterVariableString("osversion", "OS Version", "~String",2);
+		$id = $this->RegisterVariableString("ssid", "SSID", "~String",3);
+		$id = $this->RegisterVariableInteger("wlanconnection", "WLan Empfang", "~Intensity.100",4);
+		$id = $this->RegisterVariableBoolean("bluetooth", "Bluetooth", "~Switch",5);
+		$ScriptID = IPS_GetScriptIDByName("setbluetooth", $this->InstanceID);
+		IPS_SetVariableCustomAction($id, $ScriptID);
+		$id = $this->RegisterVariableString("bluetoothname", "Bluetooth Name", "~String",6);
+		IPS_SetVariableCustomAction($id, $ScriptID);
+		$id = $this->RegisterVariableInteger("volume", "Volume", "~Intensity.100",7);
+		$ScriptID = IPS_GetScriptIDByName("setvolume", $this->InstanceID);
+		IPS_SetVariableCustomAction($id, $ScriptID);
+		$id = $this->RegisterVariableInteger("brightness", "Helligkeit", "~Intensity.100",8);
+		$ScriptID = IPS_GetScriptIDByName("setdisplay", $this->InstanceID);
+		IPS_SetVariableCustomAction($id, $ScriptID);
+		$id = $this->RegisterVariableBoolean("brightnessautomode", "Helligkeit Auto Modus", "~Switch",9);
+		IPS_SetVariableCustomAction($id, $ScriptID);
 
-	$this->RegisterTimer('ReadData', $this->ReadPropertyInteger("intervall"), 'LM_readdata($id)');
+		$this->RegisterTimer('ReadData', $this->ReadPropertyInteger("intervall"), 'LM_readdata($id)');
 
-	if (($this->ReadPropertyString("ipadress") != "") and ($this->ReadPropertyString("apikey") != ""))
-		{
-			$this->SetStatus(102);
-		}
+		if (($this->ReadPropertyString("ipadress") != "") and ($this->ReadPropertyString("apikey") != ""))
+			{
+				$this->SetStatus(102);
+			}
 
 	}
 
 	// Erstelle Events
-
 	protected function RegisterTimer($ident, $interval, $script) {
 
 		$id = @IPS_GetObjectIDByIdent($ident, $this->InstanceID);
@@ -155,7 +154,6 @@
 
 
 	// Gibt eine Nachricht auf LaMetric aus
-
 	public function notification($notification, $icon, $sound) {
 
 		$ip = $this->ReadPropertyString("ipadress");
@@ -222,9 +220,75 @@
 
 	}
 
+	// Gibt einen Alarm auf LaMetric aus
+	public function alarm($notification, $icon, $sound) {
+
+		$ip = $this->ReadPropertyString("ipadress");
+		$apikey = $this->ReadPropertyString("apikey");
+		$key = base64_encode("dev:".$apikey);
+
+		$url = "http://".$ip.":8080/api/v2/device/notifications";
+
+		if ( $sound != "") {
+			$frames = array(
+			"priority" => "critical",
+			"icon_type" => "alert",
+			"model" => array(
+			"cycles" => 1,
+			"frames" => array(
+				array(
+					"icon" => $icon,
+					"text" => $notification
+						)
+					),
+			"sound" => array(
+			"category" => "alarms",
+			"id" => $sound,
+			"repeat" => 1
+					)
+				));
+			}
+			else
+			{
+			$frames = array(
+				"priority" => "critical",
+				"icon_type" => "alert",
+				"model" => array(
+				"cycles" => 1,
+				"frames" => array(
+				array(
+					"icon" => $icon,
+					"text" => $notification
+					)
+				),
+			));
+			}
+
+		$curl = curl_init();
+
+		$headers = array(
+			"Accept: application/json",
+			"Content-Type: application/json",
+			"Authorization: Basic ".$key,
+			"Cache-Control: no-cache",
+			);
+
+		curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+		curl_setopt($curl, CURLOPT_URL, $url);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+		curl_setopt($curl, CURLOPT_POST, 1);
+		curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($frames));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+
+	}
+
 
 	// Display Konfiguration
-
 	public function display(integer $helligkeit,boolean $modus) {
 
 		$ip = $this->ReadPropertyString("ipadress");
