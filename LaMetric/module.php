@@ -69,8 +69,7 @@
 		if (($this->ReadPropertyString("ipadress") != "") and ($this->ReadPropertyString("apikey") != "") and (LM_readdata($this->InstanceID)->model != ""))
 			{
 				$this->SetStatus(102);
-			}
-			else {
+			} else {
 				$this->SetStatus(202);
 			}
 
@@ -111,12 +110,12 @@
 		if ($id && IPS_GetEvent($id)['EventType'] <> 1) {
 			IPS_DeleteEvent($id);
 			$id = 0;
-			}
+		}
 
 		if (!$id) {
-		$id = IPS_CreateEvent(1);
-		IPS_SetParent($id, $this->InstanceID);
-		IPS_SetIdent($id, $ident);
+			$id = IPS_CreateEvent(1);
+			IPS_SetParent($id, $this->InstanceID);
+			IPS_SetIdent($id, $ident);
 		}
 
 		IPS_SetName($id, $ident);
@@ -189,9 +188,7 @@
 			"repeat" => 1
 					)
 				));
-			}
-			else
-			{
+			} else {
 			$frames = array(
 				"priority" => "info",
 				"icon_type" => "info",
@@ -234,9 +231,7 @@
 			"repeat" => $repeat
 					)
 				));
-			}
-			else
-			{
+			} else {
 			$frames = array(
 				"priority" => "critical",
 				"icon_type" => "alert",
@@ -256,7 +251,7 @@
 	}
 
 	// Gibt einen Fortschrittsbalken auf LaMetric aus
-	public function progressbar($icon, $start, $current, $end, $unit) {
+	public function progressbar($start, $current, $end, $unit) {
 
 		$ip = $this->ReadPropertyString("ipadress");
 		$url = "http://".$ip.":8080/api/v2/device/notifications";
@@ -267,7 +262,6 @@
 			"model" => array(
 			"frames" => array(
 			array(
-				"icon" => $icon,
 				"goalData" => array(
 					"start" => $start,
 					"current" => $current,
@@ -290,9 +284,7 @@
 
 		if ($modus == 1) {
 			$modus = "auto";
-			}
-			else
-			{
+			} else {
 			$modus = "manual";
 			}
 
@@ -313,9 +305,7 @@
 
 		if ($btactive == 1) {
 			$btactive = true;
-			}
-			else
-			{
+			} else {
 				$btactive = false;
 			}
 
