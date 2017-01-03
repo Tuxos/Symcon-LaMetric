@@ -214,7 +214,6 @@
 	public function alarm($notification, $icon, $sound, $repeat) {
 
 		$ip = $this->ReadPropertyString("ipadress");
-
 		$url = "http://".$ip.":8080/api/v2/device/notifications";
 
 		if ( $sound != "") {
@@ -251,6 +250,35 @@
 				),
 			));
 			}
+
+		LM_callapi($this->InstanceID, $url, $frames, "POST");
+
+	}
+
+	// Gibt einen Fortschrittsbalken auf LaMetric aus
+	public function progressbar($icon, $progress) {
+
+		$ip = $this->ReadPropertyString("ipadress");
+		$url = "http://".$ip.":8080/api/v2/device/notifications";
+
+		$frames = array(
+			"priority" => "info",
+			"icon_type" => "none",
+			"model" => array(
+			"cycles" => 1,
+			"frames" => array(
+			array(
+				"icon" => $icon,
+				"goaldata":{
+					"start": 0,
+					"current": $progress,
+					"end": 100,
+					"unit": "%"
+					}
+			)
+			),
+		));
+		}
 
 		LM_callapi($this->InstanceID, $url, $frames, "POST");
 
