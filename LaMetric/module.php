@@ -302,10 +302,19 @@
 	public function apps($command) {
 
 		$ip = $this->ReadPropertyString("ipadress");
-		$url = "http://".$ip.":8080/api/v2/device/apps/$command/";
 
-		LM_callapi($this->InstanceID, $url, array(), "PUT");
-		
+		if ($command != "list") {
+			$url = "http://".$ip.":8080/api/v2/device/apps/$command/";
+			LM_callapi($this->InstanceID, $url, array(), "PUT");
+		} else {
+			url = "http://".$ip.":8080/api/v2/device/apps/"
+			$response = LM_callapi($this->InstanceID, $url, array(), "GET");
+			$data = json_decode($response);
+			return $data;
+		}
+
+
+
 	}
 
 	// Display Konfiguration
