@@ -298,6 +298,16 @@
 
 	}
 
+	// Apps Steuern
+	public function apps($command) {
+
+		$ip = $this->ReadPropertyString("ipadress");
+		$url = "http://".$ip.":8080/api/v2/device/apps/$command/";
+
+		LM_callapi($this->InstanceID, $url, array(), "PUT");
+		
+	}
+
 	// Display Konfiguration
 	public function display(integer $helligkeit,boolean $modus) {
 
