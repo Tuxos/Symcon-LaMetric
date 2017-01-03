@@ -269,19 +269,19 @@
 			"frames" => array(
 			array(
 				"icon" => $icon,
-				"goaldata"=> array(
+				"goaldata" => array(
 				array(
-					"start"=> 0,
-					"current"=> $progress,
-					"end"=> 100,
-					"unit"=> "%"
+					"start" => 0,
+					"current" => $progress,
+					"end" => 100,
+					"unit" => "%"
 				)
 			),
 			)
 			),
 		));
 
-		LM_callapi($this->InstanceID, $url, $frames, "POST");
+		return LM_callapi($this->InstanceID, $url, $frames, "POST");
 
 	}
 
