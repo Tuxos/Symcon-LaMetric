@@ -277,7 +277,7 @@
 	}
 
 	// Gibt einen Graphen auf LaMetric aus
-	public function chart(array $data) {
+	public function chart(array $data, integer $cycles) {
 
 		$ip = $this->ReadPropertyString("ipadress");
 		$url = "http://".$ip.":8080/api/v2/device/notifications";
@@ -286,6 +286,7 @@
 			"priority" => "info",
 			"icon_type" => "none",
 			"model" => array(
+			"cycles" => $cycles,
 			"frames" => array(
 			array(
 				"chartData" => $data
