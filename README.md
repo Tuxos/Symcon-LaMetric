@@ -11,7 +11,7 @@ Das Aktualisierungs Intervall legt fest alle wieviel Sekunden die Konfigurations
 
 Die LaMetric Instanz lässt sich einfach per Link ins WebFront einbinden. Alle Konfigurierbaren Parameter können direkt im WebFront eingestellt werden.
 
-Jede Kommunikation bleibt im internen Netz und geht direkt auf die LaMetric Time API und nicht über die Cloud API.
+Jede Kommunikation bleibt im internen Netz und geht direkt auf die LaMetric Time API.
 
 Die Variablen dürfen nicht umbenannt werden, da geprüft wird ob diese unter diesem Namen existieren. Wenn sie im Webfront einen anderen Namen haben sollen, bitte einen Link auf die Variablen setzen und diesen den gewünschten Namen geben.
 
@@ -102,18 +102,18 @@ Zeichen oder Zeichenfolge die hinter dem Wert stehen soll.
 ```
 
 ##Einen Geaphen auf einer LaMetric Time ausgeben
-Befehl: `LM_chart(instanz-id, array(data));`
+Befehl: `LM_chart(instanz-id, data);`
 
 ###instanz-id
 Die Objekt-ID der LaMetric Time.
 
 ###data
-Array mit beliebigen Werten die in relation zueinander dargestellt werden. Die Werte müssen mit einem Komma getrennt werden und in den Klammern von array() stehen.
+Beliebige Werte die in relation zueinander dargestellt werden. Die Werte müssen mit einem Komma getrennt werden und in "" stehen.
 
 ###Beispiel
 ```
 <?
-  LM_chart(49941 /*[Devices\LaMetric\LaMetric Büro]*/, array(1,4,2,3,9,5));
+  LM_chart(49941 /*[Devices\LaMetric\LaMetric Büro]*/, "1,4,2,3,9,5");
 ?>
 ```
 
