@@ -280,7 +280,6 @@
 			)
 			),
 		));
-		}
 
 		LM_callapi($this->InstanceID, $url, $frames, "POST");
 
