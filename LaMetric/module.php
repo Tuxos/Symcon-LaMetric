@@ -95,7 +95,7 @@
 		curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $putpost);
 		curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($frames));
 
-		curl_exec($curl);
+		return curl_exec($curl);
 		curl_close($curl);
 
 	}
@@ -131,7 +131,6 @@
 	}
 
 	// Lese alle Configurationsdaten aus
-
         public function readdata() {
 
 		$ip = $this->ReadPropertyString("ipadress");
@@ -183,7 +182,6 @@
 	public function notification($notification, $icon, $sound) {
 
 		$ip = $this->ReadPropertyString("ipadress");
-
 		$url = "http://".$ip.":8080/api/v2/device/notifications";
 
 		if ( $sound != "") {
@@ -297,65 +295,40 @@
 
 
 	// Bluetooth Konfiguration
-
 	public function bluetooth(string $btname, boolean $btactive) {
 
-	$ip = $this->ReadPropertyString("ipadress");
-	//$apikey = $this->ReadPropertyString("apikey");
-	//$key = base64_encode("dev:".$apikey);
+		$ip = $this->ReadPropertyString("ipadress");
+		$url = "http://".$ip.":8080/api/v2/device/bluetooth";
 
-	$url = "http://".$ip.":8080/api/v2/device/bluetooth";
+		if ($btactive == 1) {
+			$btactive = true;
+			}
+			else
+			{
+				$btactive = false;
+			}
 
-	if ($btactive == 1) {
-		$btactive = true;
-		}
-		else
-		{
-		$btactive = false;
-		}
+			$frames = array(
+				"active" => $btactive,
+					"name" => $btname
+						);
 
-
-	$frames = array(
-		"active" => $btactive,
-		"name" => $btname
-			);
-
-	//$curl = curl_init();
-
-	//$headers = array(
-	//	"Accept: application/json",
-	//	"Content-Type: application/json",
-	//	"Authorization: Basic ".$key,
-	//	"Cache-Control: no-cache",
-	//		);
-
-	//curl_setopt($curl, CURLOPT_URL, $url);
-	//curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-	//curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-	//curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-	//curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'PUT');
-	//curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($frames));
-
-	//curl_exec($curl);
-	//curl_close($curl);
-
-	LM_callapi($this->InstanceID, $url, $frames, "PUT");
+		LM_callapi($this->InstanceID, $url, $frames, "PUT");
 
 	}
 
 
 	// Lautstärke Konfiguration
-
 	public function volume(integer $volume) {
 
-	$ip = $this->ReadPropertyString("ipadress");
-	$url = "http://".$ip.":8080/api/v2/device/audio";
+		$ip = $this->ReadPropertyString("ipadress");
+		$url = "http://".$ip.":8080/api/v2/device/audio";
 
-	$frames = array(
-		"volume" => $volume
-			);
+		$frames = array(
+			"volume" => $volume
+					);
 
-	LM_callapi($this->InstanceID, $url, $frames, "PUT");
+		LM_callapi($this->InstanceID, $url, $frames, "PUT");
 
 	}
 
