@@ -265,7 +265,6 @@
 			"priority" => "info",
 			"icon_type" => "none",
 			"model" => array(
-			"cycles" => 1,
 			"frames" => array(
 			array(
 				"icon" => $icon,
