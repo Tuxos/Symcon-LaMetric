@@ -33,11 +33,11 @@ Die Nachricht die angezeigt werden soll.
 ###icon
 Die Nummer des Icons mit führendem "i".
 Die zur Verfügung stehenden Icons können unter https://developer.lametric.com/icons eingesehen werden.
-Wenn kein Icon angezeigt werden soll kann das entsprechende Feld leer gelassen werden. "" sind notwendig.
+Wenn kein Icon angezeigt werden soll kann das entsprechende Feld leer gelassen werden. "" sind notwendig wenn kein Icon dargestellt werden soll.
 
 ###sound
 Unter http://lametric-documentation.readthedocs.io/en/latest/reference-docs/device-notifications.html findet sich eine Liste an Sounds. Nur die der notification id funktionieren.
-Wenn kein Sound abgespielt werden soll kann das entsprechende Feld leer gelassen werden. "" sind notwendig.
+Wenn kein Sound abgespielt werden soll kann das entsprechende Feld leer gelassen werden. "" sind notwendig wenn kein Sound ausgegeben werden soll.
 
 ###Beispiel
 ```
@@ -60,14 +60,14 @@ Die Nachricht die angezeigt werden soll.
 ###icon
 Die Nummer des Icons mit führendem "i".
 Die zur Verfügung stehenden Icons können unter https://developer.lametric.com/icons eingesehen werden.
-Wenn kein Icon angezeigt werden soll kann das entsprechende Feld leer gelassen werden. "" sind notwendig.
+Wenn kein Icon angezeigt werden soll kann das entsprechende Feld leer gelassen werden. "" sind notwendig wenn kein Icon dargestellt werden soll.
 
 ###sound
 Unter http://lametric-documentation.readthedocs.io/en/latest/reference-docs/device-notifications.html findet sich eine Liste an Sounds. Nur die der alarm id funktionieren.
-Wenn kein Sound abgespielt werden soll kann das entsprechende Feld leer gelassen werden. "" sind notwendig.
+Wenn kein Sound abgespielt werden soll kann das entsprechende Feld leer gelassen werden. "" sind notwendig wenn kein Sound ausgegeben werden soll.
 
 ###repeat
-Wie häufig der Sound gespielt werden soll. 0 = bis der Alarm auf der LaMetric bestätigt wird.
+Wie häufig der Sound gespielt werden soll. 0 = bis der Alarm auf der LaMetric bestätigt wird (Knopf in der Mitte gedrückt).
 
 ###Beispiel
 ```
@@ -76,6 +76,46 @@ Wie häufig der Sound gespielt werden soll. 0 = bis der Alarm auf der LaMetric b
 ?>
 ```
 
+##Einen Fortschrittsbalken auf einer LaMetric Time ausgeben
+Befehl: `LM_progressbar(instanz-id, start, current, end, unit);`
+
+###instanz-id
+Die Objekt-ID der LaMetric Time.
+
+###start
+Wert ab dem die Skala des Fortschrittbalkens anfangen soll.
+
+###current
+Aktuell erreichter Wert in relation zum Start- und Zielwert.
+
+###end
+Zielwert bei dem der Fortschrittbalken endet.
+
+###unit
+Zeichen oder Zeichenfolge die hinter dem Wert stehen soll.
+
+###Beispiel
+```
+<?
+  LM_progressbar(49941 /*[Devices\LaMetric\LaMetric Büro]*/, 0, 30, 100, "%");
+?>
+```
+
+##Einen Geaphen auf einer LaMetric Time ausgeben
+Befehl: `LM_chart(instanz-id, array(data));`
+
+###instanz-id
+Die Objekt-ID der LaMetric Time.
+
+###data
+Array mit beliebigen Werten die in relation zueinander dargestellt werden. Die Werte müssen mit einem Komma getrennt werden und in den Klammern von array() stehen.
+
+###Beispiel
+```
+<?
+  LM_chart(49941 /*[Devices\LaMetric\LaMetric Büro]*/, array(1,4,2,3,9,5));
+?>
+```
 
 ##Lautstärke konfigurieren
 Befehl: `LM_volume(instanz-id, volume);`
@@ -84,7 +124,7 @@ Befehl: `LM_volume(instanz-id, volume);`
 Die Objekt-ID der LaMetric Time.
 
 ###volume
-Lautstärke von 0-100 (0=aus,100=max. Lautstärke).
+Lautstärke von 0-100 (0=aus, 100=max).
 
 ###Beispiel
 ```
@@ -101,7 +141,7 @@ Befehl: `LM_display(instanz-id, brightness, mode);`
 Die Objekt-ID der LaMetric Time.
 
 ###brightness
-Helligkeit von 0-100 (0=aus,100=volle Helligkeit).
+Helligkeit von 0-100 (0=aus, 100=volle Helligkeit).
 
 ###mode
 Helligkeits Sensor Steuerung an oder aus (true, false).
