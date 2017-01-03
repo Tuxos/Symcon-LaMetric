@@ -156,7 +156,7 @@
 		//$response = curl_exec($curl);
 		//curl_close($curl);
 
-		$response = LM_callapi($this->InstanceID, $url, $frames, "GET");
+		$response = LM_callapi($this->InstanceID, $url, "", "GET");
 
 		$data = json_decode($response);
 
