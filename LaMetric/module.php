@@ -73,8 +73,8 @@
 
 	}
 
-	//API Call function
-	public function callapi(string $url, array $frames) {
+	//API POST function
+	public function callapi(string $url, array $frames, string $putpost) {
 
 		$apikey = $this->ReadPropertyString("apikey");
 		$key = base64_encode("dev:".$apikey);
@@ -92,7 +92,8 @@
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 		curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-		curl_setopt($curl, CURLOPT_POST, 1);
+		//curl_setopt($curl, CURLOPT_POST, 1);
+		curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $putpost);
 		curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($frames));
 
 		curl_exec($curl);
@@ -100,6 +101,31 @@
 
 	}
 
+	//API PUT function
+	public function callapiput(string $url, array $frames) {
+
+		$apikey = $this->ReadPropertyString("apikey");
+		$key = base64_encode("dev:".$apikey);
+
+		$curl = curl_init();
+
+		$headers = array(
+			"Accept: application/json",
+			"Content-Type: application/json",
+			"Authorization: Basic ".$key,
+			"Cache-Control: no-cache",
+				);
+
+		curl_setopt($curl, CURLOPT_URL, $url);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+		curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'PUT');
+		curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($frames));
+
+		curl_exec($curl);
+		curl_close($curl);
+	}
 
 	// Erstelle Events
 	protected function RegisterTimer($ident, $interval, $script) {
@@ -150,7 +176,6 @@
 			"Cache-Control: no-cache"
 			);
 
-		curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
 		curl_setopt($curl, CURLOPT_URL, $url);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
@@ -185,8 +210,6 @@
 	public function notification($notification, $icon, $sound) {
 
 		$ip = $this->ReadPropertyString("ipadress");
-		$apikey = $this->ReadPropertyString("apikey");
-		$key = base64_encode("dev:".$apikey);
 
 		$url = "http://".$ip.":8080/api/v2/device/notifications";
 
@@ -225,26 +248,7 @@
 			));
 			}
 
-		$curl = curl_init();
-
-		$headers = array(
-			"Accept: application/json",
-			"Content-Type: application/json",
-			"Authorization: Basic ".$key,
-			"Cache-Control: no-cache",
-			);
-
-		curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-		curl_setopt($curl, CURLOPT_URL, $url);
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-		curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-		curl_setopt($curl, CURLOPT_POST, 1);
-		curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($frames));
-
-		$response = curl_exec($curl);
-
-		curl_close($curl);
+		LM_callapi($this->InstanceID, $url, $frames, "POST");
 
 	}
 
@@ -290,7 +294,7 @@
 			));
 			}
 
-		LM_callapi($this->InstanceID, $url, $frames);
+		LM_callapi($this->InstanceID, $url, $frames, "POST");
 
 	}
 
@@ -325,7 +329,6 @@
 			"Cache-Control: no-cache",
 				);
 
-		curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
 		curl_setopt($curl, CURLOPT_URL, $url);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
@@ -333,8 +336,7 @@
 		curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'PUT');
 		curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($frames));
 
-		$response = curl_exec($curl);
-
+		curl_exec($curl);
 		curl_close($curl);
 
 	}
@@ -373,7 +375,6 @@
 		"Cache-Control: no-cache",
 			);
 
-	curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
 	curl_setopt($curl, CURLOPT_URL, $url);
 	curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
@@ -381,8 +382,7 @@
 	curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'PUT');
 	curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($frames));
 
-	$response = curl_exec($curl);
-
+	curl_exec($curl);
 	curl_close($curl);
 
 	}
@@ -411,7 +411,6 @@
 		"Cache-Control: no-cache",
 			);
 
-	curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
 	curl_setopt($curl, CURLOPT_URL, $url);
 	curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
@@ -419,8 +418,7 @@
 	curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'PUT');
 	curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($frames));
 
-	$response = curl_exec($curl);
-
+	curl_exec($curl);
 	curl_close($curl);
 
 	}
