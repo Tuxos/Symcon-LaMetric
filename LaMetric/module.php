@@ -276,6 +276,25 @@
 
 	}
 
+	// Gibt einen Graphen auf LaMetric aus
+	public function chart($data) {
+
+		$ip = $this->ReadPropertyString("ipadress");
+		$url = "http://".$ip.":8080/api/v2/device/notifications";
+
+		$frames = array(
+			"priority" => "info",
+			"icon_type" => "none",
+			"model" => array(
+			"frames" => array(
+				"chartData" => [ $data ] 
+				),
+		));
+
+		return LM_callapi($this->InstanceID, $url, $frames, "POST");
+
+	}
+
 	// Display Konfiguration
 	public function display(integer $helligkeit,boolean $modus) {
 
