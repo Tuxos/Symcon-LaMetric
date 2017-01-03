@@ -101,7 +101,7 @@ Zeichen oder Zeichenfolge die hinter dem Wert stehen soll.
 ?>
 ```
 
-##Einen Geaphen auf einer LaMetric Time ausgeben
+##Einen Graphen auf einer LaMetric Time ausgeben
 Befehl: `LM_chart(instanz-id, data);`
 
 ###instanz-id
