@@ -256,7 +256,7 @@
 	}
 
 	// Gibt einen Fortschrittsbalken auf LaMetric aus
-	public function progressbar($icon, $progress) {
+	public function progressbar($icon, $start, $current, $end, %unit) {
 
 		$ip = $this->ReadPropertyString("ipadress");
 		$url = "http://".$ip.":8080/api/v2/device/notifications";
@@ -268,15 +268,13 @@
 			"frames" => array(
 			array(
 				"icon" => $icon,
-				"goaldata" => array(
-				array(
-					"start" => 0,
-					"current" => $progress,
-					"end" => 100,
-					"unit" => "%"
-				)
-			),
-			)
+				"goalData" => array(
+					"start" => $start,
+					"current" => $current,
+					"end" => $end,
+					"unit" => $unit
+					)
+				),
 			),
 		));
 
