@@ -256,7 +256,7 @@
 	}
 
 	// Gibt einen Fortschrittsbalken auf LaMetric aus
-	public function progressbar($icon, $start, $current, $end, %unit) {
+	public function progressbar($icon, $start, $current, $end, $unit) {
 
 		$ip = $this->ReadPropertyString("ipadress");
 		$url = "http://".$ip.":8080/api/v2/device/notifications";
