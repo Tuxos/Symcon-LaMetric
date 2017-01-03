@@ -46,10 +46,10 @@
 
 		parent::ApplyChanges();
 
-		$id = $this->RegisterVariableString("name", "Name", "~String",1);
-		$id = $this->RegisterVariableString("osversion", "OS Version", "~String",2);
-		$id = $this->RegisterVariableString("ssid", "SSID", "~String",3);
-		$id = $this->RegisterVariableInteger("wlanconnection", "WLan Empfang", "~Intensity.100",4);
+		$this->RegisterVariableString("name", "Name", "~String",1);
+		$this->RegisterVariableString("osversion", "OS Version", "~String",2);
+		$this->RegisterVariableString("ssid", "SSID", "~String",3);
+		$this->RegisterVariableInteger("wlanconnection", "WLan Empfang", "~Intensity.100",4);
 		$id = $this->RegisterVariableBoolean("bluetooth", "Bluetooth", "~Switch",5);
 		$ScriptID = IPS_GetScriptIDByName("setbluetooth", $this->InstanceID);
 		IPS_SetVariableCustomAction($id, $ScriptID);
