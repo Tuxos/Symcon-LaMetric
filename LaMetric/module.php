@@ -269,11 +269,11 @@
 			"frames" => array(
 			array(
 				"icon" => $icon,
-				"goaldata":{
-					"start": 0,
-					"current": $progress,
-					"end": 100,
-					"unit": "%"
+				"goaldata"=>{
+					"start"=> 0,
+					"current"=> $progress,
+					"end"=> 100,
+					"unit"=> "%"
 					}
 			)
 			),
