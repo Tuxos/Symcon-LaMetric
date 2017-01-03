@@ -66,9 +66,12 @@
 
 		$this->RegisterTimer('ReadData', $this->ReadPropertyInteger("intervall"), 'LM_readdata($id)');
 
-		if (($this->ReadPropertyString("ipadress") != "") and ($this->ReadPropertyString("apikey") != ""))
+		if (($this->ReadPropertyString("ipadress") != "") and ($this->ReadPropertyString("apikey") != "") and (LM_readdata($this->InstanceID)->model != ""))
 			{
 				$this->SetStatus(102);
+			}
+			else {
+				$this->SetStatus(202);
 			}
 
 	}
