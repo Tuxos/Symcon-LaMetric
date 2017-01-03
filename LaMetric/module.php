@@ -134,27 +134,7 @@
         public function readdata() {
 
 		$ip = $this->ReadPropertyString("ipadress");
-		//$apikey = $this->ReadPropertyString("apikey");
-		//$key = base64_encode("dev:".$apikey);
-
 		$url = "http://".$ip.":8080/api/v2/device";
-
-		//$curl = curl_init();
-
-		//$headers = array(
-		//	"Accept: application/json",
-		//	"Content-Type: application/json",
-		//	"Authorization: Basic ".$key,
-		//	"Cache-Control: no-cache"
-		//	);
-
-		//curl_setopt($curl, CURLOPT_URL, $url);
-		//curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-		//curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-		//curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-
-		//$response = curl_exec($curl);
-		//curl_close($curl);
 
 		$response = LM_callapi($this->InstanceID, $url, array(), "GET");
 
@@ -177,8 +157,10 @@
 				copy(IPS_GetKernelDir()."/modules/Symcon-LaMetric/LaMetric/setbluetooth.php", IPS_GetKernelDir()."/scripts/LM_setbluetooth.php");
 				copy(IPS_GetKernelDir()."/modules/Symcon-LaMetric/LaMetric/setvolume.php", IPS_GetKernelDir()."/scripts/LM_setvolume.php");
 			}
-	}
 
+		return $data;
+
+	}
 
 	// Gibt eine Nachricht auf LaMetric aus
 	public function notification($notification, $icon, $sound) {
@@ -271,7 +253,6 @@
 
 	}
 
-
 	// Display Konfiguration
 	public function display(integer $helligkeit,boolean $modus) {
 
@@ -295,7 +276,6 @@
 
 	}
 
-
 	// Bluetooth Konfiguration
 	public function bluetooth(string $btname, boolean $btactive) {
 
@@ -318,7 +298,6 @@
 		LM_callapi($this->InstanceID, $url, $frames, "PUT");
 
 	}
-
 
 	// Lautstärke Konfiguration
 	public function volume(integer $volume) {
