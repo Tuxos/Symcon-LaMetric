@@ -93,7 +93,7 @@
 		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 		curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
 		curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $putpost);
-		curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($frames));
+		if ($putpost != "GET" ) curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($frames));
 
 		return curl_exec($curl);
 		curl_close($curl);
@@ -134,27 +134,29 @@
         public function readdata() {
 
 		$ip = $this->ReadPropertyString("ipadress");
-		$apikey = $this->ReadPropertyString("apikey");
-		$key = base64_encode("dev:".$apikey);
+		//$apikey = $this->ReadPropertyString("apikey");
+		//$key = base64_encode("dev:".$apikey);
 
 		$url = "http://".$ip.":8080/api/v2/device";
 
-		$curl = curl_init();
+		//$curl = curl_init();
 
-		$headers = array(
-			"Accept: application/json",
-			"Content-Type: application/json",
-			"Authorization: Basic ".$key,
-			"Cache-Control: no-cache"
-			);
+		//$headers = array(
+		//	"Accept: application/json",
+		//	"Content-Type: application/json",
+		//	"Authorization: Basic ".$key,
+		//	"Cache-Control: no-cache"
+		//	);
 
-		curl_setopt($curl, CURLOPT_URL, $url);
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-		curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+		//curl_setopt($curl, CURLOPT_URL, $url);
+		//curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		//curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+		//curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
 
-		$response = curl_exec($curl);
-		curl_close($curl);
+		//$response = curl_exec($curl);
+		//curl_close($curl);
+
+		$response = LM_callapi($this->InstanceID, $url, $frames, "GET");
 
 		$data = json_decode($response);
 
