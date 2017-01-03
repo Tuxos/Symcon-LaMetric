@@ -287,8 +287,10 @@
 			"icon_type" => "none",
 			"model" => array(
 			"frames" => array(
-				"chartData" => [ $data ] 
-				),
+			array(
+				"chartData" => [ $data ]
+				)
+			),
 		));
 
 		return LM_callapi($this->InstanceID, $url, $frames, "POST");
