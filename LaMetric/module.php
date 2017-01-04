@@ -1,6 +1,6 @@
 <?
 
-	class LaMetric extends IPSModule {
+	class "LaMetric Time" extends IPSModule {
 
 	public function Create() {
 
