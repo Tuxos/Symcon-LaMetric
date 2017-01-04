@@ -1,12 +1,12 @@
 {
     "id": "{42078766-24DD-4027-BF18-0E20084F141C}",
-    "name": "LaMetric",
+    "name": "LaMetric Time",
     "type": 3,
     "vendor": "Smart Atoms",
     "aliases":
     [
         "LaMetric Time"
-    ],  
+    ],
     "parentRequirements": [],
     "childRequirements": [],
     "implemented": [],
