@@ -165,7 +165,7 @@
 	}
 
 	// Gibt eine Nachricht auf LaMetric aus
-	public function notification($notification, $icon, $sound) {
+	public function notification($notification, $icontype, $icon, $sound) {
 
 		$ip = $this->ReadPropertyString("ipadress");
 		$url = "http://".$ip.":8080/api/v2/device/notifications";
@@ -173,7 +173,7 @@
 		if ( $sound != "") {
 			$frames = array(
 			"priority" => "info",
-			"icon_type" => "info",
+			"icon_type" => $icontype,
 			"model" => array(
 			"cycles" => 1,
 			"frames" => array(
@@ -191,7 +191,7 @@
 			} else {
 			$frames = array(
 				"priority" => "info",
-				"icon_type" => "info",
+				"icon_type" => $icontype,
 				"model" => array(
 				"cycles" => 1,
 				"frames" => array(

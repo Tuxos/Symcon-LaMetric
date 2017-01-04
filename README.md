@@ -22,7 +22,7 @@ Da dies mein erstes IPSymcon Modul ist, bitte ich um Nachsicht wenn etwas nicht 
 Link zum IPSymcon Forum Thread: https://www.symcon.de/forum/threads/33536-LaMetric-Time-Modul
 
 ##Notifications an eine LaMetric Time senden
-Befehl: `LM_notification(instanz-id, notification, icon, sound);`
+Befehl: `LM_notification(instanz-id, notification, icontype, icon, sound);`
 
 ###instanz-id
 Die Objekt-ID der LaMetric Time.
@@ -30,8 +30,15 @@ Die Objekt-ID der LaMetric Time.
 ###notification
 Die Nachricht die angezeigt werden soll.
 
+###icontype
+Legt fest ob ein Icon vor der Nachticht angezeigt wird und wenn welches.
+Zur Auswahl stehen:
+none = kein Icon
+info = Ein Ausrufezeichen
+alert = Drei Ausrufezeichen
+
 ###icon
-Die Nummer des Icons mit führendem "i".
+Icon welches mit der Nachricht dargestellt werden soll. Es muss die Nummer des Icons mit führendem "i" angegeben werden.
 Die zur Verfügung stehenden Icons können unter https://developer.lametric.com/icons eingesehen werden.
 Wenn kein Icon angezeigt werden soll kann das entsprechende Feld leer gelassen werden. "" sind notwendig wenn kein Icon dargestellt werden soll.
 
@@ -42,7 +49,7 @@ Wenn kein Sound abgespielt werden soll kann das entsprechende Feld leer gelassen
 ###Beispiel
 ```
 <?
-  LM_notification(49941 /*[Devices\LaMetric\LaMetric Büro]*/, "Hallo Welt!", "i43", "car");
+  LM_notification(49941 /*[Devices\LaMetric\LaMetric Büro]*/, "Hallo Welt!", "info", "i43", "car");
 ?>
 ```
 ##Einen Alarm auf einer LaMetric Time ausgeben
