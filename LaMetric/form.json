@@ -9,7 +9,7 @@
     [
 
 	{ "type": "Button", "label": "Lese Konfiguration ein", "onClick": "LM_readdata($id);" },
-	{ "type": "Button", "label": "Sende Testnachricht", "onClick": "LM_notification($id, ' Es funktioniert!', 'i4938', 'car');" }
+	{ "type": "Button", "label": "Sende Testnachricht", "onClick": "LM_notification($id, ' Es funktioniert!', 'info', 'i4938', 'car');" }
 
     ],
     "status":
