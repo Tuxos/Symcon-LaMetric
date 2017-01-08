@@ -122,14 +122,15 @@ Beliebige Werte die in relation zueinander dargestellt werden. Die Werte müssen
 ```
 
 ##Apps weiter und zurück schalten
-Mit diesm Befehl kann die nächste oder die vorherige App aktiviert und angezeigt werden. In Zukunft wird dieser Befehl noch ausgebaut.
+Mit diesm Befehl kann die nächste oder die vorherige App aktiviert und angezeigt werden. Dieser Befehl wird noch ausgebaut, sobald die API Erweiterungen von Smart Atoms Dokumentiert sind.
+
 Befehl: `LM_apps(instanz-id, kommando)`
 
 ###instanz-id
 Die Objekt-ID der LaMetric Time.
 
 ###kommando
-Bisher geht hier nur `next` und `prev` für nächste App oder vorherige App.
+Bisher geht hier nur `next` und `prev` für nächste oder vorherige App.
 
 ###Beispiel
 ```
