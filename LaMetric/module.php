@@ -132,7 +132,7 @@
 		}
 	}
 
-	// Lese alle Configurationsdaten aus
+	// Lese alle Konfigurationsdaten aus
         public function readdata() {
 
 		$ip = $this->ReadPropertyString("ipadress");

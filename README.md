@@ -31,11 +31,8 @@ Die Objekt-ID der LaMetric Time.
 Die Nachricht die angezeigt werden soll.
 
 ###icontype
-Legt fest ob ein Icon vor der Nachticht angezeigt wird und wenn welches.
-Zur Auswahl stehen:
-none = kein Icon
-info = Ein Ausrufezeichen
-alert = Drei Ausrufezeichen
+Legt fest ob ein Icon vor der eigentlichen Nachticht angezeigt wird und wenn welches. Dieses Icon hat nichts mit dem Icon zu tun welches am Anfang der Nachrichtenzeile ausgegeben wird.
+Zur Auswahl stehen: none = kein Icon, info = Ein Ausrufezeichen, alert = Drei Ausrufezeichen.
 
 ###icon
 Icon welches mit der Nachricht dargestellt werden soll. Es muss die Nummer des Icons mit führendem "i" angegeben werden.
@@ -124,6 +121,22 @@ Beliebige Werte die in relation zueinander dargestellt werden. Die Werte müssen
 ?>
 ```
 
+##Apps weiter und zurück schalten
+Mit diesm Befehl kann die nächste oder die vorherige App aktiviert und angezeigt werden. In Zukunft wird dieser Befehl noch ausgebaut.
+Befehl: `LM_apps(instanz-id, kommando)`
+
+###instanz-id
+Die Objekt-ID der LaMetric Time.
+
+###kommando
+Bisher geht hier nur `next` und `prev` für nächste App oder vorherige App.
+
+###Beispiel
+```
+<?
+  LM_apps(49941 /*[Devices\LaMetric\LaMetric Büro]*/, "next");
+?>
+```
 ##Lautstärke konfigurieren
 Befehl: `LM_volume(instanz-id, volume);`
 
