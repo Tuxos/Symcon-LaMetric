@@ -122,7 +122,7 @@ Beliebige Werte die in relation zueinander dargestellt werden. Die Werte müssen
 ```
 
 ##Apps weiter und zurück schalten
-Mit diesm Befehl kann die nächste oder die vorherige App aktiviert und angezeigt werden. Dieser Befehl wird noch ausgebaut, sobald die API Erweiterungen von Smart Atoms Dokumentiert sind.
+Mit diesm Befehl kann die nächste oder die vorherige App aktiviert und angezeigt werden. Dieser Befehl wird noch ausgebaut sobald die API Erweiterungen von Smart Atoms Dokumentiert sind.
 
 Befehl: `LM_apps(instanz-id, kommando)`
 
