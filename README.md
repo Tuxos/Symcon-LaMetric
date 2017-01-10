@@ -32,7 +32,7 @@ Die Nachricht die angezeigt werden soll.
 
 ###icontype
 Legt fest ob ein Icon vor der eigentlichen Nachticht angezeigt wird und wenn welches. Dieses Icon hat nichts mit dem Icon zu tun welches am Anfang der Nachrichtenzeile ausgegeben wird.
-Zur Auswahl stehen: none = kein Icon, info = Ein Ausrufezeichen, alert = Drei Ausrufezeichen.
+Zur Auswahl stehen: `none` = kein Icon, `info` = Ein Ausrufezeichen, `alert` = Drei Ausrufezeichen.
 
 ###icon
 Icon welches mit der Nachricht dargestellt werden soll. Es muss die Nummer des Icons mit führendem "i" angegeben werden.

@@ -5,5 +5,9 @@
     "url": "https://github.com/Tuxos/symcon-lametric/",
     "version": "1.0",
     "build": 0,
-    "date": 0
+    "date": 0,
+    "title": "LaMetric Time Modul für IPSymcon",
+    "description": "Ermöglich das Konfigurieren einer LaMetric Time und die Ausgabe von Nachrichten, Alarmen, Graphen und Fortschritsbalken.",
+    "tags": ["LaMetric", "Notifications", "Alarm"],
+    "req_ips_version": "4.1"
 }
