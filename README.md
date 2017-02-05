@@ -1,4 +1,6 @@
-# LaMetric Time Modul für IPSymcon
+# DEVELOPMENT LaMetric Time Modul für IPSymcon
+
+Dies ist der development Branch des LaMetric Time Moduls für IPSymcon.
 
 Mit dem LaMetric Modul kann die LaMetric Time von Smart Atoms einfach in IPSymcon eingebunden werden.
 Sobald das Modul in IPSymcon installiert ist, kann man eine neue LaMetric Instanz hinzufügen.
