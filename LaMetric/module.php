@@ -246,7 +246,9 @@
 			));
 			}
 
-		return LM_callapi($this->InstanceID, $url, $frames, "POST");
+		$response = LM_callapi($this->InstanceID, $url, $frames, "POST");
+		$data = json_decode($response);
+		return echo $response->id;
 
 	}
 
