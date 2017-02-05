@@ -203,7 +203,7 @@
 			));
 			}
 
-		LM_callapi($this->InstanceID, $url, $frames, "POST");
+		return LM_callapi($this->InstanceID, $url, $frames, "POST");
 
 	}
 
@@ -246,7 +246,7 @@
 			));
 			}
 
-		LM_callapi($this->InstanceID, $url, $frames, "POST");
+		return LM_callapi($this->InstanceID, $url, $frames, "POST");
 
 	}
 
@@ -334,7 +334,7 @@
 			"brightness_mode" => $modus,
 				);
 
-		LM_callapi($this->InstanceID, $url, $frames, "PUT");
+		return LM_callapi($this->InstanceID, $url, $frames, "PUT");
 
 	}
 
@@ -355,7 +355,7 @@
 					"name" => $btname
 						);
 
-		LM_callapi($this->InstanceID, $url, $frames, "PUT");
+		return LM_callapi($this->InstanceID, $url, $frames, "PUT");
 
 	}
 
@@ -369,7 +369,7 @@
 			"volume" => $volume
 					);
 
-		LM_callapi($this->InstanceID, $url, $frames, "PUT");
+		return LM_callapi($this->InstanceID, $url, $frames, "PUT");
 
 	}
 
