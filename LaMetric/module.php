@@ -248,8 +248,8 @@
 
 		$response = LM_callapi($this->InstanceID, $url, $frames, "POST");
 		$data = json_decode($response);
-		
-		return $data->id;
+
+		return $data->success->id;
 
 	}
 
