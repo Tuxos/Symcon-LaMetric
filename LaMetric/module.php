@@ -73,7 +73,7 @@
 				$this->SetStatus(102);
 			} else {
 				if ($apikeylength != 64) {
-					$this->SetStatus(302);
+					$this->SetStatus(203);
 				}
 				else {
 					$this->SetStatus(202);
