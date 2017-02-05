@@ -378,6 +378,7 @@
 
 		$ip = $this->ReadPropertyString("ipadress");
 		$url = "http://".$ip.":8080/api/v2/device/notifications/:".$id;
+		$frames = "";
 
 		return LM_callapi($this->InstanceID, $url, $frames, "DELETE");
 
