@@ -377,7 +377,7 @@
 	public function resetalarm(integer $id) {
 
 		$ip = $this->ReadPropertyString("ipadress");
-		$url = "http://".$ip.":8080/api/v2/device/notifications/:".$id;
+		$url = "http://".$ip.":8080/api/v2/device/notifications/".$id;
 		$frames = array(
 			"nothing" => "none"
 					);
