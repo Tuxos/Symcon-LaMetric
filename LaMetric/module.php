@@ -381,11 +381,18 @@
 
 		$ip = $this->ReadPropertyString("ipadress");
 		$url = "http://".$ip.":8080/api/v2/device/notifications/".$id;
-		$frames = array(
-			"nothing" => "none"
-					);
 
-		return LM_callapi($this->InstanceID, $url, $frames, "DELETE");
+		return LM_callapi($this->InstanceID, $url, array(), "DELETE");
+
+	}
+
+	// Get notification id for resetalarm
+	public function getalarmid() {
+
+		$ip = $this->ReadPropertyString("ipadress");
+		$url = "http://".$ip.":8080/api/v2/device/notifications";
+
+		return LM_callapi($this->InstanceID, $url, array(), "GET");
 
 	}
 

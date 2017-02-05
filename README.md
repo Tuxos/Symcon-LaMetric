@@ -1,6 +1,4 @@
-# DEVELOPMENT LaMetric Time Modul für IPSymcon
-
-Dies ist der development Branch des LaMetric Time Moduls für IPSymcon.
+# LaMetric Time Modul für IPSymcon
 
 Mit dem LaMetric Modul kann die LaMetric Time von Smart Atoms einfach in IPSymcon eingebunden werden.
 Sobald das Modul in IPSymcon installiert ist, kann man eine neue LaMetric Instanz hinzufügen.
@@ -57,6 +55,8 @@ Evtl. vorher die Lautstärke mit `LM_volume(instanz-id, volume);` setzen.
 
 Befehl: `LM_alarm(instanz-id, notification, icon, sound, repeat);`
 
+Der Befehl gibt die Notification-ID als return Wert zurück. Diese wird für den `LM_resetalarm();` Befehl gebraucht.
+
 ###instanz-id
 Die Objekt-ID der LaMetric Time.
 
@@ -79,6 +79,24 @@ Wie häufig der Sound gespielt werden soll. 0 = bis der Alarm auf der LaMetric b
 ```
 <?
   LM_alarm(49941 /*[Devices\LaMetric\LaMetric Büro]*/, "Die Hütte Brennt!!!", "i1003", "alarm6", 0);
+?>
+```
+
+##Einen Alarm löschen
+Der Befehl löscht einen Alarm mit einer speziefischen ID.
+
+Befehl: `LM_resetalarm(instanz-id, notification-id);`
+
+###instanz-id
+Die Objekt-ID der LaMetric Time.
+
+###notification-id
+Eindeutige Notification-ID. Die ID wird als return Wert beim ausführen des `LM_alarm();` Befehls zurückgegeben. Die ID zählt bei jedem Alarm eins hoch.
+
+###Beispiel
+```
+<?
+  LM_resetalarm(49941 /*[Devices\LaMetric\LaMetric Büro]*/, 33);
 ?>
 ```
 
