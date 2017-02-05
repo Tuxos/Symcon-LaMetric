@@ -392,7 +392,10 @@
 		$ip = $this->ReadPropertyString("ipadress");
 		$url = "http://".$ip.":8080/api/v2/device/notifications";
 
-		return LM_callapi($this->InstanceID, $url, array(), "GET");
+		$response = LM_callapi($this->InstanceID, $url, array(), "GET");
+		$data = json_decode($response);
+		print_r($data);
+		return $data->id;
 
 	}
 
