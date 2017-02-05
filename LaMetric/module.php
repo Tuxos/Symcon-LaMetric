@@ -95,7 +95,7 @@
 		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 		curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
 		curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $putpost);
-		if ($putpost != "GET" ) curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($frames));
+		if (($putpost != "GET" ) && ($putpost != "DELETE")) curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($frames));
 
 		return curl_exec($curl);
 		curl_close($curl);
@@ -370,6 +370,20 @@
 					);
 
 		return LM_callapi($this->InstanceID, $url, $frames, "PUT");
+
+	}
+
+	// Reset Alarm
+	public function resetalarm() {
+
+		$ip = $this->ReadPropertyString("ipadress");
+		$url = "http://".$ip.":8080/api/v2/device/notifications";
+
+		$frames = array(
+			"volume" => $volume
+					);
+
+		return LM_callapi($this->InstanceID, $url, $frames, "DELETE");
 
 	}
 
