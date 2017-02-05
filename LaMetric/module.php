@@ -395,7 +395,7 @@
 		$response = LM_callapi($this->InstanceID, $url, array(), "GET");
 		$data = json_decode($response);
 		print_r($data);
-		return $data->id;
+		return $data->0->id;
 
 	}
 
