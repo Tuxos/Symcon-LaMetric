@@ -374,14 +374,10 @@
 	}
 
 	// Reset Alarm
-	public function resetalarm() {
+	public function resetalarm(integer $id) {
 
 		$ip = $this->ReadPropertyString("ipadress");
-		$url = "http://".$ip.":8080/api/v2/device/notifications";
-
-		$frames = array(
-			"volume" => $volume
-					);
+		$url = "http://".$ip.":8080/api/v2/device/notifications/:".$id;
 
 		return LM_callapi($this->InstanceID, $url, $frames, "DELETE");
 
