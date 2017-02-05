@@ -66,17 +66,18 @@
 
 		$this->RegisterTimer('ReadData', $this->ReadPropertyInteger("intervall"), 'LM_readdata($id)');
 
-		$apikeylength = strlen($this->ReadPropertyString("apikey"));
+		$apikey = $this->ReadPropertyString("apikey");
+		$apikeylength = strlen($apikey);
 
-		if (($this->ReadPropertyString("ipadress") != "") and ($apikeylength = 64) and (LM_readdata($this->InstanceID)->model != ""))
+		if (($this->ReadPropertyString("ipadress") != "") and ($apikeylength == 64) and (LM_readdata($this->InstanceID)->model != ""))
 			{
 				$this->SetStatus(102);
 			} else {
-				if ($apikeylength != 64) {
-					$this->SetStatus(203);
+				if ($apikeylength == 64) {
+					$this->SetStatus(202);
 				}
 				else {
-					$this->SetStatus(202);
+					$this->SetStatus(203);
 				}
 			}
 
