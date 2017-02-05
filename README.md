@@ -91,12 +91,28 @@ Befehl: `LM_resetalarm(instanz-id, notification-id);`
 Die Objekt-ID der LaMetric Time.
 
 ###notification-id
-Eindeutige Notification-ID. Die ID wird als return Wert beim ausführen des `LM_alarm();` Befehls zurückgegeben. Die ID zählt bei jedem Alarm eins hoch.
+Eindeutige Notification-ID. Die ID wird als return Wert beim ausführen des `LM_alarm();` Befehls zurückgegeben. Die ID zählt bei jedem Alarm eins hoch. Die aktuelle ID des angezeigten Alarms kann mit `LM_getalarmid(instanz-id,);` abgefragt werden.
 
 ###Beispiel
 ```
 <?
   LM_resetalarm(49941 /*[Devices\LaMetric\LaMetric Büro]*/, 33);
+?>
+```
+
+##Die aktuell angezeigte Alarm-ID abfragen
+Der Befehl gibt die ID des aktuell angezeigten Alarms aus. Wird für den Befehl `LM_resetalarm();` benötigt.
+
+Befehl: `LM_getalarmid(instanz-id);`
+
+###instanz-id
+Die Objekt-ID der LaMetric Time.
+
+###Beispiel
+```
+<?
+  $alarmid = LM_getalarmid(49941 /*[Devices\LaMetric\LaMetric Büro]*/);
+  LM_resetalarm(49941 /*[Devices\LaMetric\LaMetric Büro]*/, $alarmid);
 ?>
 ```
 
