@@ -329,7 +329,7 @@
 	}
 
 	// Display Konfiguration
-	public function display($helligkeit, $modus, $screensaver) {
+	public function display($helligkeit, boolean $modus, boolean $screensaver) {
 
 		$ip = $this->ReadPropertyString("ipadress");
 		$url = "http://".$ip.":8080/api/v2/device/display";
