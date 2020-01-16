@@ -340,6 +340,17 @@
 			$modus = "manual";
 			}
 
+		if ($screensaver == 1) {
+			$screensaver = array (
+				"enabled" => "true",
+				"mode" => "when_dark",
+			);
+			} else {
+			$screensaver = array (
+				"enabled" => "false",
+			);
+			}
+
 		$frames = array(
 			"brightness" => $helligkeit,
 			"brightness_mode" => $modus,
