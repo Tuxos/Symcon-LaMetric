@@ -19,35 +19,35 @@ Da dies mein erstes IPSymcon Modul ist, bitte ich um Nachsicht wenn etwas nicht 
 
 Link zum IPSymcon Forum Thread: https://www.symcon.de/forum/threads/33536-LaMetric-Time-Modul
 
-##Notifications an eine LaMetric Time senden
+## Notifications an eine LaMetric Time senden
 Befehl: `LM_notification(instanz-id, notification, icontype, icon, sound);`
 
-###instanz-id
+### instanz-id
 Die Objekt-ID der LaMetric Time.
 
-###notification
+### notification
 Die Nachricht die angezeigt werden soll.
 
-###icontype
+### icontype
 Legt fest ob ein Icon vor der eigentlichen Nachticht angezeigt wird und wenn welches. Dieses Icon hat nichts mit dem Icon zu tun welches am Anfang der Nachrichtenzeile ausgegeben wird.
 Zur Auswahl stehen: `none` = kein Icon, `info` = Ein Ausrufezeichen, `alert` = Drei Ausrufezeichen.
 
-###icon
+### icon
 Icon welches mit der Nachricht dargestellt werden soll. Es muss die Nummer des Icons mit führendem "i" angegeben werden.
 Die zur Verfügung stehenden Icons können unter https://developer.lametric.com/icons eingesehen werden.
 Wenn kein Icon angezeigt werden soll kann das entsprechende Feld leer gelassen werden. "" sind notwendig wenn kein Icon dargestellt werden soll.
 
-###sound
+### sound
 Unter http://lametric-documentation.readthedocs.io/en/latest/reference-docs/device-notifications.html findet sich eine Liste an Sounds. Nur die der notification id funktionieren.
 Wenn kein Sound abgespielt werden soll kann das entsprechende Feld leer gelassen werden. "" sind notwendig wenn kein Sound ausgegeben werden soll.
 
-###Beispiel
+### Beispiel
 ```
 <?
   LM_notification(49941 /*[Devices\LaMetric\LaMetric Büro]*/, "Hallo Welt!", "info", "i43", "car");
 ?>
 ```
-##Einen Alarm auf einer LaMetric Time ausgeben
+## Einen Alarm auf einer LaMetric Time ausgeben
 Ein Alarm wird solange angezeigt bis er an der LaMetric bestätigt wird.
 Evtl. vorher die Lautstärke mit `LM_volume(instanz-id, volume);` setzen.
 
@@ -55,58 +55,58 @@ Befehl: `LM_alarm(instanz-id, notification, icon, sound, repeat);`
 
 Der Befehl gibt die Notification-ID als return Wert zurück. Diese wird für den `LM_resetalarm();` Befehl gebraucht.
 
-###instanz-id
+### instanz-id
 Die Objekt-ID der LaMetric Time.
 
-###notification
+### notification
 Die Nachricht die angezeigt werden soll.
 
-###icon
+### icon
 Die Nummer des Icons mit führendem "i".
 Die zur Verfügung stehenden Icons können unter https://developer.lametric.com/icons eingesehen werden.
 Wenn kein Icon angezeigt werden soll kann das entsprechende Feld leer gelassen werden. "" sind notwendig wenn kein Icon dargestellt werden soll.
 
-###sound
+### sound
 Unter http://lametric-documentation.readthedocs.io/en/latest/reference-docs/device-notifications.html findet sich eine Liste an Sounds. Nur die der alarm id funktionieren.
 Wenn kein Sound abgespielt werden soll kann das entsprechende Feld leer gelassen werden. "" sind notwendig wenn kein Sound ausgegeben werden soll.
 
-###repeat
+### repeat
 Wie häufig der Sound gespielt werden soll. 0 = bis der Alarm auf der LaMetric bestätigt wird (Knopf in der Mitte gedrückt).
 
-###Beispiel
+### Beispiel
 ```
 <?
   LM_alarm(49941 /*[Devices\LaMetric\LaMetric Büro]*/, "Die Hütte Brennt!!!", "i1003", "alarm6", 0);
 ?>
 ```
 
-##Einen Alarm löschen
+## Einen Alarm löschen
 Der Befehl löscht einen Alarm mit einer speziefischen ID.
 
 Befehl: `LM_resetalarm(instanz-id, notification-id);`
 
-###instanz-id
+### instanz-id
 Die Objekt-ID der LaMetric Time.
 
-###notification-id
+### notification-id
 Eindeutige Notification-ID. Die ID wird als return Wert beim ausführen des `LM_alarm();` Befehls zurückgegeben. Die ID zählt bei jedem Alarm eins hoch. Die aktuelle ID des angezeigten Alarms kann auch mit `LM_getalarmid(instanz-id,);` abgefragt werden.
 
-###Beispiel
+### Beispiel
 ```
 <?
   LM_resetalarm(49941 /*[Devices\LaMetric\LaMetric Büro]*/, 33);
 ?>
 ```
 
-##Die aktuell angezeigte Alarm-ID abfragen
+## Die aktuell angezeigte Alarm-ID abfragen
 Der Befehl gibt die ID des aktuell angezeigten Alarms aus. Wird für den Befehl `LM_resetalarm();` benötigt.
 
 Befehl: `LM_getalarmid(instanz-id);`
 
-###instanz-id
+### instanz-id
 Die Objekt-ID der LaMetric Time.
 
-###Beispiel
+### Beispiel
 ```
 <?
   $alarmid = LM_getalarmid(49941 /*[Devices\LaMetric\LaMetric Büro]*/);
@@ -114,74 +114,74 @@ Die Objekt-ID der LaMetric Time.
 ?>
 ```
 
-##Einen Fortschrittsbalken auf einer LaMetric Time ausgeben
+## Einen Fortschrittsbalken auf einer LaMetric Time ausgeben
 Befehl: `LM_progressbar(instanz-id, start, current, end, unit);`
 
-###instanz-id
+### instanz-id
 Die Objekt-ID der LaMetric Time.
 
-###start
+### start
 Wert ab dem die Skala des Fortschrittbalkens anfangen soll.
 
-###current
+### current
 Aktuell erreichter Wert in relation zum Start- und Zielwert.
 
-###end
+### end
 Zielwert bei dem der Fortschrittbalken endet.
 
-###unit
+### unit
 Zeichen oder Zeichenfolge die hinter dem Wert stehen soll.
 
-###Beispiel
+### Beispiel
 ```
 <?
   LM_progressbar(49941 /*[Devices\LaMetric\LaMetric Büro]*/, 0, 30, 100, "%");
 ?>
 ```
 
-##Einen Graphen auf einer LaMetric Time ausgeben
+## Einen Graphen auf einer LaMetric Time ausgeben
 Befehl: `LM_chart(instanz-id, data);`
 
-###instanz-id
+### instanz-id
 Die Objekt-ID der LaMetric Time.
 
-###data
+### data
 Beliebige Werte die in relation zueinander dargestellt werden. Die Werte müssen mit einem Komma getrennt werden und in "" stehen.
 
-###Beispiel
+### Beispiel
 ```
 <?
   LM_chart(49941 /*[Devices\LaMetric\LaMetric Büro]*/, "1,4,2,3,9,5");
 ?>
 ```
 
-##Apps weiter und zurück schalten
+## Apps weiter und zurück schalten
 Mit diesm Befehl kann die nächste oder die vorherige App aktiviert und angezeigt werden. Dieser Befehl wird noch ausgebaut sobald die API Erweiterungen von Smart Atoms Dokumentiert sind.
 
 Befehl: `LM_apps(instanz-id, kommando)`
 
-###instanz-id
+### instanz-id
 Die Objekt-ID der LaMetric Time.
 
-###kommando
+### kommando
 Bisher geht hier nur `next` und `prev` für nächste oder vorherige App.
 
-###Beispiel
+### Beispiel
 ```
 <?
   LM_apps(49941 /*[Devices\LaMetric\LaMetric Büro]*/, "next");
 ?>
 ```
-##Lautstärke konfigurieren
+## Lautstärke konfigurieren
 Befehl: `LM_volume(instanz-id, volume);`
 
-###instanz-id
+### instanz-id
 Die Objekt-ID der LaMetric Time.
 
-###volume
+### volume
 Lautstärke von 0-100 (0=aus, 100=max).
 
-###Beispiel
+### Beispiel
 ```
 <?
   LM_volume(49941 /*[Devices\LaMetric\LaMetric Büro]*/, 50);
@@ -189,51 +189,51 @@ Lautstärke von 0-100 (0=aus, 100=max).
 ```
 
 
-##Display konfigurieren
+## Display konfigurieren
 Befehl: `LM_display(instanz-id, brightness, mode);`
 
-###instanz-id
+### instanz-id
 Die Objekt-ID der LaMetric Time.
 
-###brightness
+### brightness
 Helligkeit von 0-100 (0=aus, 100=volle Helligkeit).
 
-###mode
+### mode
 Helligkeits Sensor Steuerung an oder aus (true, false).
 
-###Beispiel
+### Beispiel
 ```
 <?
   LM_display(49941 /*[Devices\LaMetric\LaMetric Büro]*/, 50, false);
 ?>
 ```
 
-##Bluetooth konfigurieren
+## Bluetooth konfigurieren
 Befehl: `LM_bluetooth(instanz-id, bluetooth-name, aktiv);`
 
-###instanz-id
+### instanz-id
 Die Objekt-ID der LaMetric Time.
 
-###bluetooth-name
+### bluetooth-name
 Unter diesen Namen erscheid die LaMetric Time bei anderen Bluetooth Geräten.
 
-###aktiv
+### aktiv
 Bluetooth an oder aus (true, false).
 
-###Beispiel
+### Beispiel
 ```
 <?
   LM_bluetooth(49941 /*[Devices\LaMetric\LaMetric Büro]*/, "LaMetric-Büro", false);
 ?>
 ```
 
-##Lese Konfiguration der LaMetric Time ein und schreibe sie in die vorgesehenen IPSymcon Variablen
+## Lese Konfiguration der LaMetric Time ein und schreibe sie in die vorgesehenen IPSymcon Variablen
 Befehl: `LM_readdata(instanz-id);`
 
-###instanz-id
+### instanz-id
 Die Objekt-ID der LaMetric Time.
 
-###Beispiel
+### Beispiel
 ```
 <?
   LM_readdata(49941 /*[Devices\LaMetric\LaMetric Büro]*/ );
