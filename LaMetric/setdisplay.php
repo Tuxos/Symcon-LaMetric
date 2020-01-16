@@ -7,7 +7,8 @@
 	$modeid = IPS_GetObjectIDByName('Helligkeit Auto Modus', $parentid);
 	$mode = GetValueBoolean($modeid);
 	$helligkeit = GetValueInteger($helligkeitid);
+	$screensaver = GetValueBoolean($screensaverid);
 
-	LM_display($parentid, $helligkeit, $mode);
+	LM_display($parentid, $helligkeit, $mode, $screensaver);
 
 ?>
