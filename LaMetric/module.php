@@ -63,6 +63,8 @@
 		IPS_SetVariableCustomAction($id, $ScriptID);
 		$id = $this->RegisterVariableBoolean("brightnessautomode", "Helligkeit Auto Modus", "~Switch",9);
 		IPS_SetVariableCustomAction($id, $ScriptID);
+		$id = $this->RegisterVariableBoolean("screensaver", "Screensaver", "~Switch",10);
+		IPS_SetVariableCustomAction($id, $ScriptID);
 
 		$this->RegisterTimer('ReadData', $this->ReadPropertyInteger("intervall"), 'LM_readdata($id)');
 
@@ -155,6 +157,7 @@
 		SetValue(IPS_GetObjectIDByName("Volume", $this->InstanceID), $data->audio->volume);
 		SetValue(IPS_GetObjectIDByName("Helligkeit", $this->InstanceID),$data->display->brightness);
 		SetValueBoolean(IPS_GetObjectIDByName("Helligkeit Auto Modus", $this->InstanceID),$mode);
+		SetValueBoolean(IPS_GetObjectIDByName("Screensaver", $this->InstanceID),$data->display->screensaver->enabled);
 		SetValueBoolean(IPS_GetObjectIDByName("Bluetooth", $this->InstanceID),$data->bluetooth->active);
 		SetValue(IPS_GetObjectIDByName("Bluetooth Name", $this->InstanceID),$data->bluetooth->name);
 		SetValue(IPS_GetObjectIDByName("Name", $this->InstanceID),$data->name);
