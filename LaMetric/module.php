@@ -329,7 +329,7 @@
 	}
 
 	// Display Konfiguration
-	public function display(integer $helligkeit,boolean $modus) {
+	public function display(integer $helligkeit,boolean $modus, string $screensaver) {
 
 		$ip = $this->ReadPropertyString("ipadress");
 		$url = "http://".$ip.":8080/api/v2/device/display";
@@ -343,6 +343,7 @@
 		$frames = array(
 			"brightness" => $helligkeit,
 			"brightness_mode" => $modus,
+			"screensaver" => $screensaver,
 				);
 
 		return LM_callapi($this->InstanceID, $url, $frames, "PUT");
