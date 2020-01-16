@@ -291,7 +291,7 @@
 	}
 
 	// Gibt einen Graphen auf LaMetric aus
-	public function chart(string $data) {
+	public function chart($data) {
 
 		$ip = $this->ReadPropertyString("ipadress");
 		$url = "http://".$ip.":8080/api/v2/device/notifications";
@@ -365,7 +365,7 @@
 	}
 
 	// Bluetooth Konfiguration
-	public function bluetooth(string $btname, boolean $btactive) {
+	public function bluetooth($btname, $btactive) {
 
 		$ip = $this->ReadPropertyString("ipadress");
 		$url = "http://".$ip.":8080/api/v2/device/bluetooth";
@@ -386,7 +386,7 @@
 	}
 
 	// Lautstärke Konfiguration
-	public function volume(integer $volume) {
+	public function volume($volume) {
 
 		$ip = $this->ReadPropertyString("ipadress");
 		$url = "http://".$ip.":8080/api/v2/device/audio";
@@ -400,7 +400,7 @@
 	}
 
 	// Reset Alarm
-	public function resetalarm(integer $id) {
+	public function resetalarm($id) {
 
 		$ip = $this->ReadPropertyString("ipadress");
 		$url = "http://".$ip.":8080/api/v2/device/notifications/".$id;
