@@ -190,7 +190,7 @@ Lautstärke von 0-100 (0=aus, 100=max).
 
 
 ## Display konfigurieren
-Befehl: `LM_display(instanz-id, brightness, mode);`
+Befehl: `LM_display(instanz-id, brightness, mode, screensaver);`
 
 ### instanz-id
 Die Objekt-ID der LaMetric Time.
@@ -201,10 +201,14 @@ Helligkeit von 0-100 (0=aus, 100=volle Helligkeit).
 ### mode
 Helligkeits Sensor Steuerung an oder aus (true, false).
 
+### screensaver
+Screensaver an oder aus (true, false).
+Es wird nur "when_dark" unterstützt. Zeitbasierter Screensaver kann nicht konfiguriert werden.
+
 ### Beispiel
 ```
 <?
-  LM_display(49941 /*[Devices\LaMetric\LaMetric Büro]*/, 50, false);
+  LM_display(49941 /*[Devices\LaMetric\LaMetric Büro]*/, 50, false, false);
 ?>
 ```
 
