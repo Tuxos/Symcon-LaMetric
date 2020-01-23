@@ -113,7 +113,6 @@ Die Objekt-ID der LaMetric Time.
   LM_resetalarm(49941 /*[Devices\LaMetric\LaMetric Büro]*/, $alarmid);
 ?>
 ```
-
 ## Einen Fortschrittsbalken auf einer LaMetric Time ausgeben
 Befehl: `LM_progressbar(instanz-id, start, current, end, unit);`
 
@@ -190,6 +189,7 @@ Lautstärke von 0-100 (0=aus, 100=max).
 
 
 ## Display konfigurieren
+
 Befehl: `LM_display(instanz-id, brightness, mode, screensaver);`
 
 ### instanz-id
