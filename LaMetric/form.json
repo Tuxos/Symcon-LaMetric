@@ -16,6 +16,7 @@
     [
         { "code": 101, "icon": "active", "caption": "LaMetric Time Instanz wird erstellt..." },
         { "code": 102, "icon": "active", "caption": "LaMetric Time Instanz ist aktiv" },
-        { "code": 202, "icon": "error", "caption": "Konfiguration falsch oder unvollständig" }
+        { "code": 202, "icon": "error", "caption": "Konfiguration falsch oder unvollständig" },
+	   { "code": 203, "icon": "error", "caption": "API-Key hat die falsche Länge. Leerzeichen vorhanden?" }
     ]
 }

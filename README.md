@@ -15,8 +15,6 @@ Jede Kommunikation bleibt im internen Netz und geht direkt auf die LaMetric Time
 
 Die Variablen dürfen nicht umbenannt werden, da geprüft wird ob diese unter diesem Namen existieren. Wenn sie im Webfront einen anderen Namen haben sollen, bitte einen Link auf die Variablen setzen und diesen den gewünschten Namen geben.
 
-Ein bekannter Bug ist es, dass wenn man direkt an der LaMetric die Lautstärke per Taste ändert, der Wert in der App als auch in der API (sprich auch in IPSymcon) nicht aktualisiert angezeigt wird. Es wird der letzte bekannte Wert angezeigt. Wenn die Lautstärke per App oder API geändert wird, zeigt er die richtige Lautstärke an. Der Bug ist Smart Atoms gemeldet worden.
-
 Da dies mein erstes IPSymcon Modul ist, bitte ich um Nachsicht wenn etwas nicht 100% funktionieren sollte oder der Code schlecht ist. Gerne nehme ich Verbesserungsvorschläge an :-)
 
 Link zum IPSymcon Forum Thread: https://www.symcon.de/forum/threads/33536-LaMetric-Time-Modul
@@ -55,6 +53,8 @@ Evtl. vorher die Lautstärke mit `LM_volume(instanz-id, volume);` setzen.
 
 Befehl: `LM_alarm(instanz-id, notification, icon, sound, repeat);`
 
+Der Befehl gibt die Notification-ID als return Wert zurück. Diese wird für den `LM_resetalarm();` Befehl gebraucht.
+
 ### instanz-id
 Die Objekt-ID der LaMetric Time.
 
@@ -80,6 +80,39 @@ Wie häufig der Sound gespielt werden soll. 0 = bis der Alarm auf der LaMetric b
 ?>
 ```
 
+## Einen Alarm löschen
+Der Befehl löscht einen Alarm mit einer speziefischen ID.
+
+Befehl: `LM_resetalarm(instanz-id, notification-id);`
+
+### instanz-id
+Die Objekt-ID der LaMetric Time.
+
+### notification-id
+Eindeutige Notification-ID. Die ID wird als return Wert beim ausführen des `LM_alarm();` Befehls zurückgegeben. Die ID zählt bei jedem Alarm eins hoch. Die aktuelle ID des angezeigten Alarms kann auch mit `LM_getalarmid(instanz-id,);` abgefragt werden.
+
+### Beispiel
+```
+<?
+  LM_resetalarm(49941 /*[Devices\LaMetric\LaMetric Büro]*/, 33);
+?>
+```
+
+## Die aktuell angezeigte Alarm-ID abfragen
+Der Befehl gibt die ID des aktuell angezeigten Alarms aus. Wird für den Befehl `LM_resetalarm();` benötigt.
+
+Befehl: `LM_getalarmid(instanz-id);`
+
+### instanz-id
+Die Objekt-ID der LaMetric Time.
+
+### Beispiel
+```
+<?
+  $alarmid = LM_getalarmid(49941 /*[Devices\LaMetric\LaMetric Büro]*/);
+  LM_resetalarm(49941 /*[Devices\LaMetric\LaMetric Büro]*/, $alarmid);
+?>
+```
 ## Einen Fortschrittsbalken auf einer LaMetric Time ausgeben
 Befehl: `LM_progressbar(instanz-id, start, current, end, unit);`
 
@@ -156,7 +189,8 @@ Lautstärke von 0-100 (0=aus, 100=max).
 
 
 ## Display konfigurieren
-Befehl: `LM_display(instanz-id, brightness, mode);`
+
+Befehl: `LM_display(instanz-id, brightness, mode, screensaver);`
 
 ### instanz-id
 Die Objekt-ID der LaMetric Time.
@@ -167,10 +201,14 @@ Helligkeit von 0-100 (0=aus, 100=volle Helligkeit).
 ### mode
 Helligkeits Sensor Steuerung an oder aus (true, false).
 
+### screensaver
+Screensaver an oder aus (true, false).
+Es wird nur "when_dark" unterstützt. Zeitbasierter Screensaver kann nicht konfiguriert werden.
+
 ### Beispiel
 ```
 <?
-  LM_display(49941 /*[Devices\LaMetric\LaMetric Büro]*/, 50, false);
+  LM_display(49941 /*[Devices\LaMetric\LaMetric Büro]*/, 50, false, false);
 ?>
 ```
 

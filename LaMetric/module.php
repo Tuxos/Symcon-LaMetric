@@ -63,14 +63,24 @@
 		IPS_SetVariableCustomAction($id, $ScriptID);
 		$id = $this->RegisterVariableBoolean("brightnessautomode", "Helligkeit Auto Modus", "~Switch",9);
 		IPS_SetVariableCustomAction($id, $ScriptID);
+		$id = $this->RegisterVariableBoolean("screensaver", "Screensaver", "~Switch",10);
+		IPS_SetVariableCustomAction($id, $ScriptID);
 
 		$this->RegisterTimer('ReadData', $this->ReadPropertyInteger("intervall"), 'LM_readdata($id)');
 
-		if (($this->ReadPropertyString("ipadress") != "") and ($this->ReadPropertyString("apikey") != "") and (LM_readdata($this->InstanceID)->model != ""))
+		$apikey = $this->ReadPropertyString("apikey");
+		$apikeylength = strlen($apikey);
+
+		if (($this->ReadPropertyString("ipadress") != "") and ($apikeylength == 64) and (LM_readdata($this->InstanceID)->model != ""))
 			{
 				$this->SetStatus(102);
 			} else {
-				$this->SetStatus(202);
+				if ($apikeylength == 64) {
+					$this->SetStatus(202);
+				}
+				else {
+					$this->SetStatus(203);
+				}
 			}
 
 	}
@@ -95,7 +105,7 @@
 		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 		curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
 		curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $putpost);
-		if ($putpost != "GET" ) curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($frames));
+		if (($putpost != "GET" ) && ($putpost != "DELETE")) curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($frames));
 
 		return curl_exec($curl);
 		curl_close($curl);
@@ -147,6 +157,7 @@
 		SetValue(IPS_GetObjectIDByName("Volume", $this->InstanceID), $data->audio->volume);
 		SetValue(IPS_GetObjectIDByName("Helligkeit", $this->InstanceID),$data->display->brightness);
 		SetValueBoolean(IPS_GetObjectIDByName("Helligkeit Auto Modus", $this->InstanceID),$mode);
+		SetValueBoolean(IPS_GetObjectIDByName("Screensaver", $this->InstanceID),$data->display->screensaver->enabled);
 		SetValueBoolean(IPS_GetObjectIDByName("Bluetooth", $this->InstanceID),$data->bluetooth->active);
 		SetValue(IPS_GetObjectIDByName("Bluetooth Name", $this->InstanceID),$data->bluetooth->name);
 		SetValue(IPS_GetObjectIDByName("Name", $this->InstanceID),$data->name);
@@ -203,7 +214,7 @@
 			));
 			}
 
-		LM_callapi($this->InstanceID, $url, $frames, "POST");
+		return LM_callapi($this->InstanceID, $url, $frames, "POST");
 
 	}
 
@@ -246,7 +257,10 @@
 			));
 			}
 
-		LM_callapi($this->InstanceID, $url, $frames, "POST");
+		$response = LM_callapi($this->InstanceID, $url, $frames, "POST");
+		$data = json_decode($response);
+
+		return $data->success->id;
 
 	}
 
@@ -277,7 +291,7 @@
 	}
 
 	// Gibt einen Graphen auf LaMetric aus
-	public function chart(string $data) {
+	public function chart($data) {
 
 		$ip = $this->ReadPropertyString("ipadress");
 		$url = "http://".$ip.":8080/api/v2/device/notifications";
@@ -318,7 +332,7 @@
 	}
 
 	// Display Konfiguration
-	public function display(integer $helligkeit,boolean $modus) {
+	public function display($helligkeit, $modus, $screensaver) {
 
 		$ip = $this->ReadPropertyString("ipadress");
 		$url = "http://".$ip.":8080/api/v2/device/display";
@@ -329,17 +343,29 @@
 			$modus = "manual";
 			}
 
+		if ($screensaver == 1) {
+			$screensaver = array (
+				"enabled" => "true",
+				"mode" => "when_dark",
+			);
+			} else {
+			$screensaver = array (
+				"enabled" => "false",
+			);
+			}
+
 		$frames = array(
 			"brightness" => $helligkeit,
 			"brightness_mode" => $modus,
+			"screensaver" => $screensaver,
 				);
 
-		LM_callapi($this->InstanceID, $url, $frames, "PUT");
+		return LM_callapi($this->InstanceID, $url, $frames, "PUT");
 
 	}
 
 	// Bluetooth Konfiguration
-	public function bluetooth(string $btname, boolean $btactive) {
+	public function bluetooth($btname, $btactive) {
 
 		$ip = $this->ReadPropertyString("ipadress");
 		$url = "http://".$ip.":8080/api/v2/device/bluetooth";
@@ -355,12 +381,12 @@
 					"name" => $btname
 						);
 
-		LM_callapi($this->InstanceID, $url, $frames, "PUT");
+		return LM_callapi($this->InstanceID, $url, $frames, "PUT");
 
 	}
 
 	// Lautstärke Konfiguration
-	public function volume(integer $volume) {
+	public function volume($volume) {
 
 		$ip = $this->ReadPropertyString("ipadress");
 		$url = "http://".$ip.":8080/api/v2/device/audio";
@@ -369,7 +395,30 @@
 			"volume" => $volume
 					);
 
-		LM_callapi($this->InstanceID, $url, $frames, "PUT");
+		return LM_callapi($this->InstanceID, $url, $frames, "PUT");
+
+	}
+
+	// Reset Alarm
+	public function resetalarm($id) {
+
+		$ip = $this->ReadPropertyString("ipadress");
+		$url = "http://".$ip.":8080/api/v2/device/notifications/".$id;
+
+		return LM_callapi($this->InstanceID, $url, array(), "DELETE");
+
+	}
+
+	// Get notification id for resetalarm
+	public function getalarmid() {
+
+		$ip = $this->ReadPropertyString("ipadress");
+		$url = "http://".$ip.":8080/api/v2/device/notifications";
+
+		$response = LM_callapi($this->InstanceID, $url, array(), "GET");
+		$data = json_decode($response);
+
+		return $data[0]->id;
 
 	}
 
