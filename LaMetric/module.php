@@ -218,7 +218,7 @@
 	}
 
 	// Gibt einen Alarm auf LaMetric aus
-	public function alarm(string $notification, string $icon, int $sound, int $repeat) {
+	public function alarm(string $notification, string $icon, string $sound, int $repeat) {
 
 		$ip = $this->ReadPropertyString("ipadress");
 		$url = "http://".$ip.":8080/api/v2/device/notifications";
@@ -317,7 +317,7 @@
 		$ip = $this->ReadPropertyString("ipadress");
 
 		if ($command != "list") {
-			$url = "http://".$ip.":8080/api/v2/device/apps/$command/";
+			$url = "http://".$ip.":8080/api/v2/device/apps/$command";
 			LM_callapi($this->InstanceID, $url, array(), "PUT");
 		} else {
 			$url = "http://".$ip.":8080/api/v2/device/apps/";
