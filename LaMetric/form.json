@@ -1,9 +1,9 @@
 {
     "elements":
     [
-        { "type": "ValidationTextBox" , "name" : "ipadress", "caption": "IP Adresse" },
-        { "type": "ValidationTextBox" , "name" : "apikey", "caption": "API Key" },
-        { "type": "ValidationTextBox" , "name" : "intervall", "caption": "Aktual. Intervall" }
+        { "type": "ValidationTextBox", "name" : "ipadress", "caption": "IP Adresse" },
+        { "type": "ValidationTextBox", "name" : "apikey", "caption": "API Key" },
+        { "type": "ValidationTextBox", "name" : "intervall", "caption": "Aktual. Intervall" }
     ],
     "actions":
     [
