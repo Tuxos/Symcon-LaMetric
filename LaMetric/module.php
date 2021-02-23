@@ -218,7 +218,7 @@
 	}
 
 	// Gibt einen Alarm auf LaMetric aus
-	public function alarm($notification, $icon, $sound, $repeat) {
+	public function alarm(string $notification, int $icon, int $sound, $repeat) {
 
 		$ip = $this->ReadPropertyString("ipadress");
 		$url = "http://".$ip.":8080/api/v2/device/notifications";
@@ -264,7 +264,7 @@
 	}
 
 	// Gibt einen Fortschrittsbalken auf LaMetric aus
-	public function progressbar($start, $current, $end, $unit) {
+	public function progressbar(int $start, int $current, int $end, string $unit) {
 
 		$ip = $this->ReadPropertyString("ipadress");
 		$url = "http://".$ip.":8080/api/v2/device/notifications";
@@ -364,7 +364,7 @@
 	}
 
 	// Bluetooth Konfiguration
-	public function bluetooth($btname, $btactive) {
+	public function bluetooth(string $btname, bool $btactive) {
 
 		$ip = $this->ReadPropertyString("ipadress");
 		$url = "http://".$ip.":8080/api/v2/device/bluetooth";
@@ -385,7 +385,7 @@
 	}
 
 	// Lautstärke Konfiguration
-	public function volume($volume) {
+	public function volume(int $volume) {
 
 		$ip = $this->ReadPropertyString("ipadress");
 		$url = "http://".$ip.":8080/api/v2/device/audio";
