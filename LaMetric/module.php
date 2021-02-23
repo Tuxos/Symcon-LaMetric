@@ -152,6 +152,8 @@
 
 		$data = json_decode($response);
 		$wifistrength = var_dump($data->wifi->strength);
+		$wifistrength = explode("(",$wifistrength);
+		$wifistrength = explode("(",$wifistrength[1]);
 
 		if ($data->display->brightness_mode == "auto") { $mode=true; } else { $mode=false; };
 
@@ -164,7 +166,7 @@
 		SetValue(IPS_GetObjectIDByName("Name", $this->InstanceID),$data->name);
 		SetValue(IPS_GetObjectIDByName("OS Version", $this->InstanceID),$data->os_version);
 		SetValue(IPS_GetObjectIDByName("SSID", $this->InstanceID),$data->wifi->essid);
-		SetValueInteger(IPS_GetObjectIDByName("WLan Empfang", $this->InstanceID),$wifistrength);
+		SetValueInteger(IPS_GetObjectIDByName("WLan Empfang", $this->InstanceID),$wifistrength[0]);
 
 		if (file_exists(IPS_GetKernelDir()."/scripts/LM_setdisplay.php") == false) {
 				copy(IPS_GetKernelDir()."/modules/Symcon-LaMetric/LaMetric/setdisplay.php", IPS_GetKernelDir()."/scripts/LM_setdisplay.php");
