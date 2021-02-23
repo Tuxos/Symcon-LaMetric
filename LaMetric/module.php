@@ -175,7 +175,7 @@
 	}
 
 	// Gibt eine Nachricht auf LaMetric aus
-	public function notification(string $notification, string $icontype, int $icon, int $sound) {
+	public function notification(string $notification, int $icontype, int $icon, int $sound) {
 
 		$ip = $this->ReadPropertyString("ipadress");
 		$url = "http://".$ip.":8080/api/v2/device/notifications";
