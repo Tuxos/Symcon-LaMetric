@@ -151,7 +151,7 @@
 		$response = LM_callapi($this->InstanceID, $url, array(), "GET");
 
 		$data = json_decode($response);
-		$wifistrength = $data->wifi->strength;
+		$wifistrength =strval($data->wifi->strength);
 		$wifistrength = explode("(",$wifistrength);
 		$wifistrength = explode("(",$wifistrength[1]);
 
