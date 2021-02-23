@@ -318,7 +318,8 @@
 
 		if ($command != "list") {
 			$url = "http://".$ip.":8080/api/v2/device/apps/$command";
-			LM_callapi($this->InstanceID, $url, array(), "PUT");
+			$response = LM_callapi($this->InstanceID, $url, array(), "PUT");
+			$data = json_decode($response);
 		} else {
 			$url = "http://".$ip.":8080/api/v2/device/apps/";
 			$response = LM_callapi($this->InstanceID, $url, array(), "GET");
