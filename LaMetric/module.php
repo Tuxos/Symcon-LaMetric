@@ -218,7 +218,7 @@
 	}
 
 	// Gibt einen Alarm auf LaMetric aus
-	public function alarm(string $notification, int $icon, int $sound, $repeat) {
+	public function alarm(string $notification, string $icon, int $sound, int $repeat) {
 
 		$ip = $this->ReadPropertyString("ipadress");
 		$url = "http://".$ip.":8080/api/v2/device/notifications";
@@ -290,7 +290,7 @@
 	}
 
 	// Gibt einen Graphen auf LaMetric aus
-	public function chart($data) {
+	public function chart(string $data) {
 
 		$ip = $this->ReadPropertyString("ipadress");
 		$url = "http://".$ip.":8080/api/v2/device/notifications";
@@ -312,7 +312,7 @@
 	}
 
 	// Apps Steuern
-	public function apps($command) {
+	public function apps(string $command) {
 
 		$ip = $this->ReadPropertyString("ipadress");
 
@@ -331,7 +331,7 @@
 	}
 
 	// Display Konfiguration
-	public function display($helligkeit, $modus, $screensaver) {
+	public function display(int $helligkeit, bool $modus, bool $screensaver) {
 
 		$ip = $this->ReadPropertyString("ipadress");
 		$url = "http://".$ip.":8080/api/v2/device/display";
@@ -399,7 +399,7 @@
 	}
 
 	// Reset Alarm
-	public function resetalarm($id) {
+	public function resetalarm(int $id) {
 
 		$ip = $this->ReadPropertyString("ipadress");
 		$url = "http://".$ip.":8080/api/v2/device/notifications/".$id;
