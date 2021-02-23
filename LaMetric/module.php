@@ -162,8 +162,8 @@
 		SetValue(IPS_GetObjectIDByName("Bluetooth Name", $this->InstanceID),$data->bluetooth->name);
 		SetValue(IPS_GetObjectIDByName("Name", $this->InstanceID),$data->name);
 		SetValue(IPS_GetObjectIDByName("OS Version", $this->InstanceID),$data->os_version);
-		SetValue(IPS_GetObjectIDByName("SSID", $this->InstanceID),$data->wifi->essid);
-		SetValueInteger(IPS_GetObjectIDByName("WLan Empfang", $this->InstanceID),$data->wifi->strength);
+		SetValue(IPS_GetObjectIDByName("SSID", $this->InstanceID),$data->wifi->ssid);
+		SetValue(IPS_GetObjectIDByName("WLan Empfang", $this->InstanceID),$data->wifi->signal_strength);
 
 		if (file_exists(IPS_GetKernelDir()."/scripts/LM_setdisplay.php") == false) {
 				copy(IPS_GetKernelDir()."/modules/Symcon-LaMetric/LaMetric/setdisplay.php", IPS_GetKernelDir()."/scripts/LM_setdisplay.php");
