@@ -151,7 +151,7 @@
 		$response = LM_callapi($this->InstanceID, $url, array(), "GET");
 
 		$data = json_decode($response);
-		$wifistrength = $data->wifi->strength;
+		$wifistrength = var_dump($data->wifi->strength);
 
 		if ($data->display->brightness_mode == "auto") { $mode=true; } else { $mode=false; };
 
