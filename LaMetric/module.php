@@ -320,6 +320,7 @@
 			$url = "http://".$ip.":8080/api/v2/device/apps/$command";
 			$response = LM_callapi($this->InstanceID, $url, array(), "PUT");
 			$data = json_decode($response);
+			return $data;
 		} else {
 			$url = "http://".$ip.":8080/api/v2/device/apps/";
 			$response = LM_callapi($this->InstanceID, $url, array(), "GET");
