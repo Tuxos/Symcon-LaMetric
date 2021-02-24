@@ -151,19 +151,20 @@
 		$response = LM_callapi($this->InstanceID, $url, array(), "GET");
 		$data = json_decode($response);
 
-		if ($data->display->brightness_mode == "auto") { $mode=true; } else { $mode=false; };
-
-		SetValue(IPS_GetObjectIDByName("Volume", $this->InstanceID), $data->audio->volume);
-		SetValue(IPS_GetObjectIDByName("Helligkeit", $this->InstanceID),$data->display->brightness);
-		SetValueBoolean(IPS_GetObjectIDByName("Helligkeit Auto Modus", $this->InstanceID),$mode);
-		SetValueBoolean(IPS_GetObjectIDByName("Screensaver", $this->InstanceID),$data->display->screensaver->enabled);
-		SetValueBoolean(IPS_GetObjectIDByName("Bluetooth", $this->InstanceID),$data->bluetooth->active);
-		SetValue(IPS_GetObjectIDByName("Bluetooth Name", $this->InstanceID),$data->bluetooth->name);
-		SetValue(IPS_GetObjectIDByName("Name", $this->InstanceID),$data->name);
-		SetValue(IPS_GetObjectIDByName("OS Version", $this->InstanceID),$data->os_version);
-		SetValue(IPS_GetObjectIDByName("SSID", $this->InstanceID),$data->wifi->essid);
-		SetValue(IPS_GetObjectIDByName("WLan Empfang", $this->InstanceID),$data->wifi->strength);
-
+		if (isset($data)){
+			if ($data->display->brightness_mode == "auto") { $mode=true; } else { $mode=false; };
+			SetValue(IPS_GetObjectIDByName("Volume", $this->InstanceID), $data->audio->volume);
+			SetValue(IPS_GetObjectIDByName("Helligkeit", $this->InstanceID),$data->display->brightness);
+			SetValueBoolean(IPS_GetObjectIDByName("Helligkeit Auto Modus", $this->InstanceID),$mode);
+			SetValueBoolean(IPS_GetObjectIDByName("Screensaver", $this->InstanceID),$data->display->screensaver->enabled);
+			SetValueBoolean(IPS_GetObjectIDByName("Bluetooth", $this->InstanceID),$data->bluetooth->active);
+			SetValue(IPS_GetObjectIDByName("Bluetooth Name", $this->InstanceID),$data->bluetooth->name);
+			SetValue(IPS_GetObjectIDByName("Name", $this->InstanceID),$data->name);
+			SetValue(IPS_GetObjectIDByName("OS Version", $this->InstanceID),$data->os_version);
+			SetValue(IPS_GetObjectIDByName("SSID", $this->InstanceID),$data->wifi->essid);
+			SetValue(IPS_GetObjectIDByName("WLan Empfang", $this->InstanceID),$data->wifi->strength);
+		}
+		
 		if (file_exists(IPS_GetKernelDir()."/scripts/LM_setdisplay.php") == false) {
 				copy(IPS_GetKernelDir()."/modules/Symcon-LaMetric/LaMetric/setdisplay.php", IPS_GetKernelDir()."/scripts/LM_setdisplay.php");
 				copy(IPS_GetKernelDir()."/modules/Symcon-LaMetric/LaMetric/setbluetooth.php", IPS_GetKernelDir()."/scripts/LM_setbluetooth.php");
