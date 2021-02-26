@@ -162,7 +162,7 @@
 			SetValue(IPS_GetObjectIDByName("Name", $this->InstanceID),$data->name);
 			SetValue(IPS_GetObjectIDByName("OS Version", $this->InstanceID),$data->os_version);
 			SetValue(IPS_GetObjectIDByName("SSID", $this->InstanceID),$data->wifi->essid);
-			SetValue(IPS_GetObjectIDByName("WLan Empfang", $this->InstanceID),$data->wifi->strength);
+			if (isset($data->wifi->strength)) SetValue(IPS_GetObjectIDByName("WLan Empfang", $this->InstanceID),$data->wifi->strength);
 		}
 		
 		if (file_exists(IPS_GetKernelDir()."/scripts/LM_setdisplay.php") == false) {
